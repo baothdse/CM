@@ -1,5 +1,5 @@
 package com.fpt.cm.entities;
-// Generated Feb 6, 2017 9:31:53 PM by Hibernate Tools 4.3.1.Final
+// Generated Feb 7, 2017 7:37:11 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @Table(name = "schedules", catalog = "cm")
 public class ScheduleEntity implements java.io.Serializable {
 
-	private Integer scheduleId;
+	private Long scheduleId;
 	private MovieEntity movie;
 	private Date startDate;
 	private Date startTime;
@@ -48,11 +48,11 @@ public class ScheduleEntity implements java.io.Serializable {
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "schedule_id", unique = true, nullable = false)
-	public Integer getScheduleId() {
+	public Long getScheduleId() {
 		return this.scheduleId;
 	}
 
-	public void setScheduleId(Integer scheduleId) {
+	public void setScheduleId(Long scheduleId) {
 		this.scheduleId = scheduleId;
 	}
 

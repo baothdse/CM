@@ -1,5 +1,5 @@
 package com.fpt.cm.entities;
-// Generated Feb 6, 2017 9:31:53 PM by Hibernate Tools 4.3.1.Final
+// Generated Feb 7, 2017 7:37:11 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @Table(name = "movie", catalog = "cm")
 public class MovieEntity implements java.io.Serializable {
 
-	private Integer movieId;
+	private Long movieId;
 	private AccountEntity accounts;
 	private String movieName;
 	private String introduction;
@@ -57,11 +57,11 @@ public class MovieEntity implements java.io.Serializable {
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "movie_id", unique = true, nullable = false)
-	public Integer getMovieId() {
+	public Long getMovieId() {
 		return this.movieId;
 	}
 
-	public void setMovieId(Integer movieId) {
+	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
 
@@ -75,7 +75,7 @@ public class MovieEntity implements java.io.Serializable {
 		this.accounts = accounts;
 	}
 
-	@Column(name = "movie_name", length = 50)
+	@Column(name = "movie_name", length = 200)
 	public String getMovieName() {
 		return this.movieName;
 	}
@@ -93,7 +93,7 @@ public class MovieEntity implements java.io.Serializable {
 		this.introduction = introduction;
 	}
 
-	@Column(name = "actor", length = 300)
+	@Column(name = "actor", length = 200)
 	public String getActor() {
 		return this.actor;
 	}

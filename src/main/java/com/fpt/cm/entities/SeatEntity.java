@@ -1,5 +1,5 @@
 package com.fpt.cm.entities;
-// Generated Feb 6, 2017 9:31:53 PM by Hibernate Tools 4.3.1.Final
+// Generated Feb 7, 2017 7:37:11 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "seat", catalog = "cm")
 public class SeatEntity implements java.io.Serializable {
 
-	private int seatId;
+	private long seatId;
 	private ScheduleEntity schedules;
 	private String seatName;
 	private Boolean seatStatus;
@@ -24,11 +24,11 @@ public class SeatEntity implements java.io.Serializable {
 	public SeatEntity() {
 	}
 
-	public SeatEntity(int seatId) {
+	public SeatEntity(long seatId) {
 		this.seatId = seatId;
 	}
 
-	public SeatEntity(int seatId, ScheduleEntity schedules, String seatName, Boolean seatStatus) {
+	public SeatEntity(long seatId, ScheduleEntity schedules, String seatName, Boolean seatStatus) {
 		this.seatId = seatId;
 		this.schedules = schedules;
 		this.seatName = seatName;
@@ -38,11 +38,11 @@ public class SeatEntity implements java.io.Serializable {
 	@Id
 
 	@Column(name = "seat_id", unique = true, nullable = false)
-	public int getSeatId() {
+	public long getSeatId() {
 		return this.seatId;
 	}
 
-	public void setSeatId(int seatId) {
+	public void setSeatId(long seatId) {
 		this.seatId = seatId;
 	}
 
@@ -56,7 +56,7 @@ public class SeatEntity implements java.io.Serializable {
 		this.schedules = schedules;
 	}
 
-	@Column(name = "seatName", length = 3)
+	@Column(name = "seat_name", length = 4)
 	public String getSeatName() {
 		return this.seatName;
 	}
@@ -65,7 +65,7 @@ public class SeatEntity implements java.io.Serializable {
 		this.seatName = seatName;
 	}
 
-	@Column(name = "seatStatus")
+	@Column(name = "seat_status")
 	public Boolean getSeatStatus() {
 		return this.seatStatus;
 	}
