@@ -1,5 +1,5 @@
-package com.fpt.entities;
-// Generated Jan 18, 2017 7:34:38 AM by Hibernate Tools 4.3.1.Final
+package com.fpt.cm.entities;
+// Generated Feb 6, 2017 9:31:53 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,22 +15,22 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "accounts", catalog = "cm")
-public class Accounts implements java.io.Serializable {
+public class AccountEntity implements java.io.Serializable {
 
 	private int userId;
 	private String username;
 	private String password;
 	private String role;
-	private Set<Movie> movies = new HashSet<Movie>(0);
+	private Set<MovieEntity> movies = new HashSet<MovieEntity>(0);
 
-	public Accounts() {
+	public AccountEntity() {
 	}
 
-	public Accounts(int userId) {
+	public AccountEntity(int userId) {
 		this.userId = userId;
 	}
 
-	public Accounts(int userId, String username, String password, String role, Set<Movie> movies) {
+	public AccountEntity(int userId, String username, String password, String role, Set<MovieEntity> movies) {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
@@ -77,11 +77,11 @@ public class Accounts implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accounts")
-	public Set<Movie> getMovies() {
+	public Set<MovieEntity> getMovies() {
 		return this.movies;
 	}
 
-	public void setMovies(Set<Movie> movies) {
+	public void setMovies(Set<MovieEntity> movies) {
 		this.movies = movies;
 	}
 

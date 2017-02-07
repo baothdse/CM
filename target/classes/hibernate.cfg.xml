@@ -15,7 +15,6 @@
         <mapping class="com.fpt.entities.Seat" />
         <mapping class="com.fpt.entities.Movie" />
         <mapping class="com.fpt.entities.Schedules" />
-        <mapping class="com.fpt.entities.Ticket" />
         <mapping class="com.fpt.entities.Accounts" />
     </session-factory>
 </hibernate-configuration>

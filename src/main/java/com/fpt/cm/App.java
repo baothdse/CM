@@ -1,4 +1,4 @@
-package com.fpt.CinemaManagement;
+package com.fpt.cm;
 
 /**
  * Hello world!
