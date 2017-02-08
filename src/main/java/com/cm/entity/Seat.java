@@ -1,5 +1,5 @@
-package com.fpt.cm.entities;
-// Generated Feb 7, 2017 7:37:11 PM by Hibernate Tools 4.3.1.Final
+package com.cm.entity;
+// Generated Feb 8, 2017 3:09:26 PM by Hibernate Tools 4.0.0.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,21 +14,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "seat", catalog = "cm")
-public class SeatEntity implements java.io.Serializable {
+public class Seat implements java.io.Serializable {
 
 	private long seatId;
-	private ScheduleEntity schedules;
+	private Schedules schedules;
 	private String seatName;
 	private Boolean seatStatus;
 
-	public SeatEntity() {
+	public Seat() {
 	}
 
-	public SeatEntity(long seatId) {
+	public Seat(long seatId) {
 		this.seatId = seatId;
 	}
 
-	public SeatEntity(long seatId, ScheduleEntity schedules, String seatName, Boolean seatStatus) {
+	public Seat(long seatId, Schedules schedules, String seatName, Boolean seatStatus) {
 		this.seatId = seatId;
 		this.schedules = schedules;
 		this.seatName = seatName;
@@ -48,11 +48,11 @@ public class SeatEntity implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "schedule_id")
-	public ScheduleEntity getSchedules() {
+	public Schedules getSchedules() {
 		return this.schedules;
 	}
 
-	public void setSchedules(ScheduleEntity schedules) {
+	public void setSchedules(Schedules schedules) {
 		this.schedules = schedules;
 	}
 

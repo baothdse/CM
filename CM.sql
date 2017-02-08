@@ -39,3 +39,16 @@ create table seat (
     schedule_id bigint(20),
     constraint fk_schedule foreign key (schedule_id) references schedules(schedule_id)
 );
+
+create table ticket (
+   ticket_id bigint(20) not null primary key auto_increment,
+   username varchar(50),
+   phone varchar(50),
+   room integer(2),
+   start_date date,
+   start_time time,
+   theatre varchar(50),
+   movie_name varchar(200),
+   amount integer(2),
+   total_price varchar(50)
+);

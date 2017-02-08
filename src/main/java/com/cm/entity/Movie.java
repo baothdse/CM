@@ -1,5 +1,5 @@
-package com.fpt.cm.entities;
-// Generated Feb 7, 2017 7:37:11 PM by Hibernate Tools 4.3.1.Final
+package com.cm.entity;
+// Generated Feb 8, 2017 3:09:26 PM by Hibernate Tools 4.0.0.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,10 +22,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "movie", catalog = "cm")
-public class MovieEntity implements java.io.Serializable {
+public class Movie implements java.io.Serializable {
 
 	private Long movieId;
-	private AccountEntity accounts;
+	private Accounts accounts;
 	private String movieName;
 	private String introduction;
 	private String actor;
@@ -34,13 +34,13 @@ public class MovieEntity implements java.io.Serializable {
 	private Date endDate;
 	private String trailer;
 	private String picture;
-	private Set<ScheduleEntity> scheduleses = new HashSet<ScheduleEntity>(0);
+	private Set<Schedules> scheduleses = new HashSet<Schedules>(0);
 
-	public MovieEntity() {
+	public Movie() {
 	}
 
-	public MovieEntity(AccountEntity accounts, String movieName, String introduction, String actor, String genre, Date startDate,
-			Date endDate, String trailer, String picture, Set<ScheduleEntity> scheduleses) {
+	public Movie(Accounts accounts, String movieName, String introduction, String actor, String genre, Date startDate,
+			Date endDate, String trailer, String picture, Set<Schedules> scheduleses) {
 		this.accounts = accounts;
 		this.movieName = movieName;
 		this.introduction = introduction;
@@ -67,11 +67,11 @@ public class MovieEntity implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "add_by_id")
-	public AccountEntity getAccounts() {
+	public Accounts getAccounts() {
 		return this.accounts;
 	}
 
-	public void setAccounts(AccountEntity accounts) {
+	public void setAccounts(Accounts accounts) {
 		this.accounts = accounts;
 	}
 
@@ -150,11 +150,11 @@ public class MovieEntity implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-	public Set<ScheduleEntity> getScheduleses() {
+	public Set<Schedules> getScheduleses() {
 		return this.scheduleses;
 	}
 
-	public void setScheduleses(Set<ScheduleEntity> scheduleses) {
+	public void setScheduleses(Set<Schedules> scheduleses) {
 		this.scheduleses = scheduleses;
 	}
 

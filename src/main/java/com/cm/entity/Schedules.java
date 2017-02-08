@@ -1,5 +1,5 @@
-package com.fpt.cm.entities;
-// Generated Feb 7, 2017 7:37:11 PM by Hibernate Tools 4.3.1.Final
+package com.cm.entity;
+// Generated Feb 8, 2017 3:09:26 PM by Hibernate Tools 4.0.0.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,20 +22,20 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "schedules", catalog = "cm")
-public class ScheduleEntity implements java.io.Serializable {
+public class Schedules implements java.io.Serializable {
 
 	private Long scheduleId;
-	private MovieEntity movie;
+	private Movie movie;
 	private Date startDate;
 	private Date startTime;
 	private String theatre;
 	private Integer room;
-	private Set<SeatEntity> seats = new HashSet<SeatEntity>(0);
+	private Set<Seat> seats = new HashSet<Seat>(0);
 
-	public ScheduleEntity() {
+	public Schedules() {
 	}
 
-	public ScheduleEntity(MovieEntity movie, Date startDate, Date startTime, String theatre, Integer room, Set<SeatEntity> seats) {
+	public Schedules(Movie movie, Date startDate, Date startTime, String theatre, Integer room, Set<Seat> seats) {
 		this.movie = movie;
 		this.startDate = startDate;
 		this.startTime = startTime;
@@ -58,11 +58,11 @@ public class ScheduleEntity implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "movie_id")
-	public MovieEntity getMovie() {
+	public Movie getMovie() {
 		return this.movie;
 	}
 
-	public void setMovie(MovieEntity movie) {
+	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
 
@@ -105,11 +105,11 @@ public class ScheduleEntity implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "schedules")
-	public Set<SeatEntity> getSeats() {
+	public Set<Seat> getSeats() {
 		return this.seats;
 	}
 
-	public void setSeats(Set<SeatEntity> seats) {
+	public void setSeats(Set<Seat> seats) {
 		this.seats = seats;
 	}
 
