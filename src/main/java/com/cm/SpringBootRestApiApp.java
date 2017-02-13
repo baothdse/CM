@@ -6,9 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
-@Configuration
+import org.springframework.context.annotation.Import;
+
+import com.cm.config.JpaConfiguration;
+
+@Import(JpaConfiguration.class)
 @SpringBootApplication(scanBasePackages = {"com.cm" })	
-@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class })
 public class SpringBootRestApiApp {
 	
 	public static void main(String[] args) {
