@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: CinemaManagement
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Van
+Built-By: BaoTHD
 Implementation-Vendor-Id: cm
-Build-Jdk: 1.8.0_92
+Build-Jdk: 1.8.0_111
 Implementation-URL: http://projects.spring.io/spring-boot/CinemaManage
  ment/
 Created-By: Maven Integration for Eclipse

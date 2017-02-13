@@ -14,21 +14,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "seat", catalog = "cm")
-public class Seat implements java.io.Serializable {
+public class SeatEntity implements java.io.Serializable {
 
 	private long seatId;
-	private Schedules schedules;
+	private ScheduleEntity schedules;
 	private String seatName;
 	private Boolean seatStatus;
 
-	public Seat() {
+	public SeatEntity() {
 	}
 
-	public Seat(long seatId) {
+	public SeatEntity(long seatId) {
 		this.seatId = seatId;
 	}
 
-	public Seat(long seatId, Schedules schedules, String seatName, Boolean seatStatus) {
+	public SeatEntity(long seatId, ScheduleEntity schedules, String seatName, Boolean seatStatus) {
 		this.seatId = seatId;
 		this.schedules = schedules;
 		this.seatName = seatName;
@@ -48,11 +48,11 @@ public class Seat implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "schedule_id")
-	public Schedules getSchedules() {
+	public ScheduleEntity getSchedules() {
 		return this.schedules;
 	}
 
-	public void setSchedules(Schedules schedules) {
+	public void setSchedules(ScheduleEntity schedules) {
 		this.schedules = schedules;
 	}
 

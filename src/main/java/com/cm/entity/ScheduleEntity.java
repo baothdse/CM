@@ -22,20 +22,20 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "schedules", catalog = "cm")
-public class Schedules implements java.io.Serializable {
+public class ScheduleEntity implements java.io.Serializable {
 
 	private Long scheduleId;
-	private Movie movie;
+	private MovieEntity movie;
 	private Date startDate;
 	private Date startTime;
 	private String theatre;
 	private Integer room;
-	private Set<Seat> seats = new HashSet<Seat>(0);
+	private Set<SeatEntity> seats = new HashSet<SeatEntity>(0);
 
-	public Schedules() {
+	public ScheduleEntity() {
 	}
 
-	public Schedules(Movie movie, Date startDate, Date startTime, String theatre, Integer room, Set<Seat> seats) {
+	public ScheduleEntity(MovieEntity movie, Date startDate, Date startTime, String theatre, Integer room, Set<SeatEntity> seats) {
 		this.movie = movie;
 		this.startDate = startDate;
 		this.startTime = startTime;
@@ -58,11 +58,11 @@ public class Schedules implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "movie_id")
-	public Movie getMovie() {
+	public MovieEntity getMovie() {
 		return this.movie;
 	}
 
-	public void setMovie(Movie movie) {
+	public void setMovie(MovieEntity movie) {
 		this.movie = movie;
 	}
 
@@ -105,11 +105,11 @@ public class Schedules implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "schedules")
-	public Set<Seat> getSeats() {
+	public Set<SeatEntity> getSeats() {
 		return this.seats;
 	}
 
-	public void setSeats(Set<Seat> seats) {
+	public void setSeats(Set<SeatEntity> seats) {
 		this.seats = seats;
 	}
 

@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "ticket", catalog = "cm")
-public class Ticket implements java.io.Serializable {
+public class TicketEntity implements java.io.Serializable {
 
 	private Long ticketId;
 	private String username;
@@ -29,10 +29,10 @@ public class Ticket implements java.io.Serializable {
 	private Integer amount;
 	private String totalPrice;
 
-	public Ticket() {
+	public TicketEntity() {
 	}
 
-	public Ticket(String username, String phone, Integer room, Date startDate, Date startTime, String theatre,
+	public TicketEntity(String username, String phone, Integer room, Date startDate, Date startTime, String theatre,
 			String movieName, Integer amount, String totalPrice) {
 		this.username = username;
 		this.phone = phone;

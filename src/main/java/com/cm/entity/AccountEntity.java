@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "accounts", catalog = "cm")
-public class Accounts implements java.io.Serializable {
+public class AccountEntity implements java.io.Serializable {
 
 	private long userId;
 	private String username;
@@ -26,17 +26,17 @@ public class Accounts implements java.io.Serializable {
 	private String nameOfCustomer;
 	private Date birthdate;
 	private String role;
-	private Set<Movie> movies = new HashSet<Movie>(0);
+	private Set<MovieEntity> movies = new HashSet<MovieEntity>(0);
 
-	public Accounts() {
+	public AccountEntity() {
 	}
 
-	public Accounts(long userId) {
+	public AccountEntity(long userId) {
 		this.userId = userId;
 	}
 
-	public Accounts(long userId, String username, String password, String nameOfCustomer, Date birthdate, String role,
-			Set<Movie> movies) {
+	public AccountEntity(long userId, String username, String password, String nameOfCustomer, Date birthdate, String role,
+			Set<MovieEntity> movies) {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
@@ -104,11 +104,11 @@ public class Accounts implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accounts")
-	public Set<Movie> getMovies() {
+	public Set<MovieEntity> getMovies() {
 		return this.movies;
 	}
 
-	public void setMovies(Set<Movie> movies) {
+	public void setMovies(Set<MovieEntity> movies) {
 		this.movies = movies;
 	}
 

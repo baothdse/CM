@@ -1,7 +1,7 @@
 create database if not exists cm;
 use cm;
 create table accounts (
-    user_id bigint(20) not null primary key,
+    user_id bigint(20) not null primary key auto_increment,
     username varchar(50),
     password varchar(50),
     name_of_customer varchar(128),
@@ -33,7 +33,7 @@ create table schedules (
 );
 
 create table seat (
-	seat_id bigint(20) not null primary key,
+	seat_id bigint(20) not null primary key auto_increment,
     seat_name varchar(4),
     seat_status boolean,
     schedule_id bigint(20),
