@@ -1,0 +1,38 @@
+package com.cm.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cm.common.CustomeErrType;
+import com.cm.constants.ParamConstants;
+import com.cm.constants.URLConstants;
+import com.cm.entity.AccountEntity;
+import com.cm.services.interfaces.AccountService;
+
+
+@RestController
+@RequestMapping("/account")
+public class AccountController {
+	
+	@Autowired
+	AccountService accountService;
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestParam(value="username") String username,
+			                       @RequestParam(value="password") String password){
+		AccountEntity profile = accountService.findByUserName(username);
+		if(profile==null){
+			return new ResponseEntity<String>("Login fail", HttpStatus.UNAUTHORIZED);
+		}else if(!profile.getPassword().equals(password)){
+			return new ResponseEntity<String>("Login fail", HttpStatus.UNAUTHORIZED);
+		}
+		return new ResponseEntity<AccountEntity>(profile, HttpStatus.OK); 
+	}
+}
