@@ -112,7 +112,7 @@ public class MovieEntity implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "start_date", length = 10)
+	@Column(name = "startDate", length = 10)
 	public Date getStartDate() {
 		return this.startDate;
 	}

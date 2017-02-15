@@ -25,9 +25,9 @@ public class AccountController {
 	@Autowired
 	AccountService accountService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestParam(value="username") String username,
-			                       @RequestParam(value="password") String password){
+	@RequestMapping(value = URLConstants.LOGIN_URL, method = RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestParam(value=ParamConstants.USERNAME) String username,
+			                       @RequestParam(value=ParamConstants.PASSWORD) String password){
 		AccountEntity profile = accountService.findByUserName(username);
 		if(profile==null){
 			ErrorCustome err = new ErrorCustome("403", "Wrong password or username");
