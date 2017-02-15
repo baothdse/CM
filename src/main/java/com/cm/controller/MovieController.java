@@ -26,13 +26,10 @@ public class MovieController {
 	@Autowired
 	MovieService movieService;
 	
-//	@RequestMapping(value = "/comingSoon", method = RequestMethod.GET)
-//	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope=ServerRequest.class)
-//	@ManyToOne(fetch = FetchType.EAGER)
-	public MovieEntity getComingSoon() {
+    @RequestMapping(value = "/comingSoon", method = RequestMethod.GET)
+	public ResponseEntity<?> getComingSoon() {
 		MovieEntity movie = movieService.getMovieComingSoon();
 		System.out.println(movie);
-		return movie; 
-
+		return new ResponseEntity<MovieEntity>(movie, HttpStatus.OK); 
 	}	
 }
