@@ -4,7 +4,7 @@ public class CustomeErrType {
 
 	private String errorMessage;
 
-    public void CustomErrType(String errorMessage){
+	public void CustomErrType(String errorMessage){
         this.errorMessage = errorMessage;
     }
 

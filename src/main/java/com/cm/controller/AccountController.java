@@ -14,6 +14,7 @@ import com.cm.common.CustomeErrType;
 import com.cm.constants.ParamConstants;
 import com.cm.constants.URLConstants;
 import com.cm.entity.AccountEntity;
+import com.cm.error.ErrorCustome;
 import com.cm.services.interfaces.AccountService;
 
 
@@ -29,9 +30,11 @@ public class AccountController {
 			                       @RequestParam(value="password") String password){
 		AccountEntity profile = accountService.findByUserName(username);
 		if(profile==null){
-			return new ResponseEntity<String>("Login fail", HttpStatus.UNAUTHORIZED);
+			ErrorCustome err = new ErrorCustome("403", "Wrong password or username");
+			return new ResponseEntity<ErrorCustome>(err, HttpStatus.OK);
 		}else if(!profile.getPassword().equals(password)){
-			return new ResponseEntity<String>("Login fail", HttpStatus.UNAUTHORIZED);
+			ErrorCustome err = new ErrorCustome("403", "Wrong password or username");
+			return new ResponseEntity<ErrorCustome>(err, HttpStatus.OK);
 		}
 		return new ResponseEntity<AccountEntity>(profile, HttpStatus.OK); 
 	}
