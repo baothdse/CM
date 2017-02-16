@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cm.common.CustomeErrType;
+import com.cm.constants.ErrorConstants;
 import com.cm.constants.ParamConstants;
 import com.cm.constants.URLConstants;
 import com.cm.entity.AccountEntity;
+import com.cm.error.ErrorCustome;
 import com.cm.services.interfaces.AccountService;
 
 
@@ -24,14 +26,13 @@ public class AccountController {
 	@Autowired
 	AccountService accountService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestParam(value="username") String username,
-			                       @RequestParam(value="password") String password){
+	@RequestMapping(value = URLConstants.LOGIN_URL, method = RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestParam(value=ParamConstants.USERNAME) String username,
+			                       @RequestParam(value=ParamConstants.PASSWORD) String password){
 		AccountEntity profile = accountService.findByUserName(username);
-		if(profile==null){
-			return new ResponseEntity<String>("Login fail", HttpStatus.UNAUTHORIZED);
-		}else if(!profile.getPassword().equals(password)){
-			return new ResponseEntity<String>("Login fail", HttpStatus.UNAUTHORIZED);
+		if( profile==null || !profile.getPassword().equals(password)){
+			ErrorCustome err = new ErrorCustome(ErrorConstants.ER001, ErrorConstants.EM001);
+			return new ResponseEntity<ErrorCustome>(err, HttpStatus.OK);
 		}
 		return new ResponseEntity<AccountEntity>(profile, HttpStatus.OK); 
 	}
