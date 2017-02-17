@@ -1,5 +1,5 @@
-package com.cm.entity;
-// Generated Feb 8, 2017 3:09:26 PM by Hibernate Tools 4.0.0.Final
+package com.cm.entities;
+// Generated Feb 17, 2017 11:23:16 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany; 
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "accounts", catalog = "cm")
-public class AccountEntity implements java.io.Serializable {
+public class Accounts implements java.io.Serializable {
 
 	private long userId;
 	private String username;
@@ -26,17 +26,17 @@ public class AccountEntity implements java.io.Serializable {
 	private String nameOfCustomer;
 	private Date birthdate;
 	private String role;
-	private Set<MovieEntity> movies = new HashSet<MovieEntity>(0);
+	private Set<Movie> movies = new HashSet<Movie>(0);
 
-	public AccountEntity() {
+	public Accounts() {
 	}
 
-	public AccountEntity(long userId) {
+	public Accounts(long userId) {
 		this.userId = userId;
 	}
 
-	public AccountEntity(long userId, String username, String password, String nameOfCustomer, Date birthdate, String role,
-			Set<MovieEntity> movies) {
+	public Accounts(long userId, String username, String password, String nameOfCustomer, Date birthdate, String role,
+			Set<Movie> movies) {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
@@ -48,7 +48,7 @@ public class AccountEntity implements java.io.Serializable {
 
 	@Id
 
-	@Column(name = "user_id", unique = true, nullable = false)
+	@Column(name = "userId", unique = true, nullable = false)
 	public long getUserId() {
 		return this.userId;
 	}
@@ -75,7 +75,7 @@ public class AccountEntity implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "name_of_customer", length = 128)
+	@Column(name = "nameOfCustomer", length = 128)
 	public String getNameOfCustomer() {
 		return this.nameOfCustomer;
 	}
@@ -104,11 +104,11 @@ public class AccountEntity implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accounts")
-	public Set<MovieEntity> getMovies() {
+	public Set<Movie> getMovies() {
 		return this.movies;
 	}
 
-	public void setMovies(Set<MovieEntity> movies) {
+	public void setMovies(Set<Movie> movies) {
 		this.movies = movies;
 	}
 

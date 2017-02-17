@@ -3,7 +3,7 @@ package com.cm.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.cm.entity.AccountEntity;
+import com.cm.entities.AccountEntity;
 
 
 @Repository
