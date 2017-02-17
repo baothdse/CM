@@ -1,6 +1,8 @@
 package com.cm.services;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +19,10 @@ public class MovieServiceImp  implements MovieService{
 	MovieRepository movieRepository;
 	
 	@Override
-	public MovieEntity getMovieComingSoon() {
+	public List<MovieEntity> getMovieComingSoon() {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date( date.getTime() );
-		return movieRepository.findByStartDate(sqlDate);
+		return (List<MovieEntity>) movieRepository.findByStartDate(sqlDate);
 	}
 
 }

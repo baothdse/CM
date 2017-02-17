@@ -1,5 +1,7 @@
 package com.cm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +21,8 @@ public class MovieController {
 	
     @RequestMapping(value = "/comingSoon", method = RequestMethod.GET)
 	public ResponseEntity<?> getComingSoon() {
-		MovieEntity movie = movieService.getMovieComingSoon();
+		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMovieComingSoon();
 		System.out.println(movie);
-		return new ResponseEntity<MovieEntity>(movie, HttpStatus.OK); 
+		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK); 
 	}	
 }
