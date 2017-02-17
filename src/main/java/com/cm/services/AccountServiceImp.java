@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import com.cm.entity.AccountEntity;
-import com.cm.model.interfaces.AccountModelInterface;
+import com.cm.entities.AccountEntity;
 import com.cm.repositories.AccountRepository;
 import com.cm.services.interfaces.AccountService;
 

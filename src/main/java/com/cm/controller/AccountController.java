@@ -3,18 +3,15 @@ package com.cm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cm.common.CustomeErrType;
 import com.cm.constants.ErrorConstants;
 import com.cm.constants.ParamConstants;
 import com.cm.constants.URLConstants;
-import com.cm.entity.AccountEntity;
+import com.cm.entities.AccountEntity;
 import com.cm.error.ErrorCustome;
 import com.cm.services.interfaces.AccountService;
 

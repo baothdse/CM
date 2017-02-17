@@ -1,5 +1,5 @@
-package com.cm.entity;
-// Generated Feb 8, 2017 3:09:26 PM by Hibernate Tools 4.0.0.Final
+package com.cm.entities;
+// Generated Feb 17, 2017 11:23:16 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "ticket", catalog = "cm")
-public class TicketEntity implements java.io.Serializable {
+public class Ticket implements java.io.Serializable {
 
 	private Long ticketId;
 	private String username;
@@ -29,10 +29,10 @@ public class TicketEntity implements java.io.Serializable {
 	private Integer amount;
 	private String totalPrice;
 
-	public TicketEntity() {
+	public Ticket() {
 	}
 
-	public TicketEntity(String username, String phone, Integer room, Date startDate, Date startTime, String theatre,
+	public Ticket(String username, String phone, Integer room, Date startDate, Date startTime, String theatre,
 			String movieName, Integer amount, String totalPrice) {
 		this.username = username;
 		this.phone = phone;
@@ -48,7 +48,7 @@ public class TicketEntity implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "ticket_id", unique = true, nullable = false)
+	@Column(name = "ticketId", unique = true, nullable = false)
 	public Long getTicketId() {
 		return this.ticketId;
 	}
@@ -85,7 +85,7 @@ public class TicketEntity implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "start_date", length = 10)
+	@Column(name = "startDate", length = 10)
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -95,7 +95,7 @@ public class TicketEntity implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIME)
-	@Column(name = "start_time", length = 8)
+	@Column(name = "startTime", length = 8)
 	public Date getStartTime() {
 		return this.startTime;
 	}
@@ -113,7 +113,7 @@ public class TicketEntity implements java.io.Serializable {
 		this.theatre = theatre;
 	}
 
-	@Column(name = "movie_name", length = 200)
+	@Column(name = "movieName", length = 200)
 	public String getMovieName() {
 		return this.movieName;
 	}
@@ -131,7 +131,7 @@ public class TicketEntity implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	@Column(name = "total_price", length = 50)
+	@Column(name = "totalPrice", length = 50)
 	public String getTotalPrice() {
 		return this.totalPrice;
 	}

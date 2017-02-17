@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.cm.entity.MovieEntity;
+import com.cm.entities.MovieEntity;
 
 public interface MovieRepository extends JpaRepository<MovieEntity, Long>{
     

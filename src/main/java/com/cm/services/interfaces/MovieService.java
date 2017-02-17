@@ -1,6 +1,6 @@
 package com.cm.services.interfaces;
 
-import com.cm.entity.MovieEntity;
+import com.cm.entities.MovieEntity;
 
 public interface MovieService {
       MovieEntity getMovieComingSoon();

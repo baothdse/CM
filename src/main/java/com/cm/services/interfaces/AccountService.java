@@ -1,6 +1,6 @@
 package com.cm.services.interfaces;
 
-import com.cm.entity.AccountEntity;
+import com.cm.entities.AccountEntity;
 
 
 public interface AccountService {

@@ -1,9 +1,12 @@
-package com.cm.entity;
-// Generated Feb 8, 2017 3:09:26 PM by Hibernate Tools 4.0.0.Final
+package com.cm.entities;
+// Generated Feb 17, 2017 11:38:04 AM by Hibernate Tools 4.3.1.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "seat", catalog = "cm")
 public class SeatEntity implements java.io.Serializable {
 
-	private long seatId;
+	private Long seatId;
 	private ScheduleEntity schedules;
 	private String seatName;
 	private Boolean seatStatus;
@@ -26,31 +29,27 @@ public class SeatEntity implements java.io.Serializable {
 	public SeatEntity() {
 	}
 
-	public SeatEntity(long seatId) {
-		this.seatId = seatId;
-	}
-
-	public SeatEntity(long seatId, ScheduleEntity schedules, String seatName, Boolean seatStatus) {
-		this.seatId = seatId;
+	public SeatEntity(ScheduleEntity schedules, String seatName, Boolean seatStatus) {
 		this.schedules = schedules;
 		this.seatName = seatName;
 		this.seatStatus = seatStatus;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "seat_id", unique = true, nullable = false)
-	public long getSeatId() {
+	@Column(name = "seatId", unique = true, nullable = false)
+	public Long getSeatId() {
 		return this.seatId;
 	}
 
-	public void setSeatId(long seatId) {
+	public void setSeatId(Long seatId) {
 		this.seatId = seatId;
 	}
-
+	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "schedule_id")
+	@JoinColumn(name = "scheduleId")
 	public ScheduleEntity getSchedules() {
 		return this.schedules;
 	}
@@ -59,7 +58,7 @@ public class SeatEntity implements java.io.Serializable {
 		this.schedules = schedules;
 	}
 
-	@Column(name = "seat_name", length = 4)
+	@Column(name = "seatName", length = 4)
 	public String getSeatName() {
 		return this.seatName;
 	}
@@ -68,7 +67,7 @@ public class SeatEntity implements java.io.Serializable {
 		this.seatName = seatName;
 	}
 
-	@Column(name = "seat_status")
+	@Column(name = "seatStatus")
 	public Boolean getSeatStatus() {
 		return this.seatStatus;
 	}
