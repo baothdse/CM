@@ -5,6 +5,8 @@ public class ParamConstants {
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "password";
 	
+
 	//Schedule
 	public static final String SCHEDULE_ID = "scheduleId";
+	public static final String MOVIE_ID = "movieID";
 }
