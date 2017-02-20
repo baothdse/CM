@@ -1,6 +1,5 @@
 package com.cm.services;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import com.cm.services.interfaces.MovieService;
 
 @Service
 @Transactional
-public class MovieServiceImp  implements MovieService{
+public class MovieServiceImp  implements MovieService {
 
 	@Autowired
 	MovieRepository movieRepository;
