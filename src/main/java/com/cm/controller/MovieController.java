@@ -24,5 +24,11 @@ public class MovieController {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMovieComingSoon();
 		System.out.println(movie);
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK); 
-	}	
+	}
+    @RequestMapping(value = "/moviePresenting", method = RequestMethod.GET)
+	public ResponseEntity<?> getMoviePresenting() {
+		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMoviePresenting();
+		System.out.println(movie);
+		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK); 
+	}
 }
