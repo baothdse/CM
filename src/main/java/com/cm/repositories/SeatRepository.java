@@ -11,6 +11,8 @@ import com.cm.entities.SeatEntity;
 
 public interface SeatRepository extends JpaRepository<SeatEntity, Long> {
 	
-	@Query("SELECT s FROM SeatEntity s WHERE s.schedules.scheduleId = :scheduleId")
+	@Query("SELECT s FROM SeatEntity s, ScheduleEntity sc WHERE s.schedules.scheduleId = :scheduleId and "
+			+ "sc.scheduleId = :scheduleId")
 	List<SeatEntity> findBySchedules(@Param(value=ParamConstants.SCHEDULE_ID) Long scheduleId);
+	
 }
