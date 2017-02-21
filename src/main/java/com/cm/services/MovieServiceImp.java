@@ -23,5 +23,9 @@ public class MovieServiceImp  implements MovieService {
 		java.sql.Date sqlDate = new java.sql.Date( date.getTime() );
 		return (List<MovieEntity>) movieRepository.findByStartDate(sqlDate);
 	}
-
+	public List<MovieEntity> getMoviePresenting() {
+		java.util.Date date = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date( date.getTime() );
+		return (List<MovieEntity>) movieRepository.findByStartEndDate(sqlDate);
+	}
 }

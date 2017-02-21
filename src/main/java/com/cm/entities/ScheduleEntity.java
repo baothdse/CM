@@ -12,7 +12,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +26,13 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "schedules", catalog = "cm")
+@NamedStoredProcedureQueries({
+	  @NamedStoredProcedureQuery( name = "findByMovie", procedureName = "FIND_SHOWTIME_BY_MOVIE", 
+	                              resultClasses = { ScheduleEntity.class }, 
+								   parameters = { @StoredProcedureParameter(name = "movieID", 
+																		    type = Integer.class, 
+																		    mode = ParameterMode.IN) }) 
+	})
 public class ScheduleEntity implements java.io.Serializable {
 
 	private Long scheduleId;
