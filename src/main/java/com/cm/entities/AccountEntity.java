@@ -1,5 +1,5 @@
 package com.cm.entities;
-// Generated Feb 17, 2017 11:38:04 AM by Hibernate Tools 4.3.1.Final
+// Generated Feb 21, 2017 8:16:36 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -28,18 +28,20 @@ public class AccountEntity implements java.io.Serializable {
 	private String nameOfCustomer;
 	private Date birthdate;
 	private String role;
+	private Set<TicketEntity> tickets = new HashSet<TicketEntity>(0);
 	private Set<MovieEntity> movies = new HashSet<MovieEntity>(0);
 
 	public AccountEntity() {
 	}
 
 	public AccountEntity(String username, String password, String nameOfCustomer, Date birthdate, String role,
-			Set<MovieEntity> movies) {
+			Set<TicketEntity> tickets, Set<MovieEntity> movies) {
 		this.username = username;
 		this.password = password;
 		this.nameOfCustomer = nameOfCustomer;
 		this.birthdate = birthdate;
 		this.role = role;
+		this.tickets = tickets;
 		this.movies = movies;
 	}
 
@@ -99,6 +101,15 @@ public class AccountEntity implements java.io.Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accounts")
+	public Set<TicketEntity> getTickets() {
+		return this.tickets;
+	}
+
+	public void setTickets(Set<TicketEntity> tickets) {
+		this.tickets = tickets;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accounts")

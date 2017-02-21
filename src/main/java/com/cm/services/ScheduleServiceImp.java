@@ -17,7 +17,7 @@ public class ScheduleServiceImp implements ScheduleService {
 	@Override
 	public ScheduleEntity getScheduleByScheduleId(Long scheduleId) {
 		// TODO Auto-generated method stub
-		return scheduleRepository.findOne(scheduleId);
+		return scheduleRepository.findByScheduleId(scheduleId);
 	}
 
 }

@@ -24,7 +24,6 @@ public class SeatController {
 
 	@Autowired
 	private SeatService seatService;
-	private ScheduleService scheduleService;
 	
     @RequestMapping(value = URLConstants.GET_SEAT_URL , method = RequestMethod.GET)
 	public ResponseEntity<?> getSeatBySchedule(@RequestParam(value=ParamConstants.SCHEDULE_ID) Long scheduleId) {
@@ -35,13 +34,21 @@ public class SeatController {
 	
     }	
     
+    @Autowired
+    private ScheduleService scheduleService;
     @RequestMapping(value = "/schedule/create-seat", method = RequestMethod.POST)
-    public ResponseEntity<?> createSeat(@RequestParam(value=ParamConstants.SCHEDULE_ID) Long scheduleId) {
+    public ResponseEntity<?> createSeat(@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
+    	System.out.println(scheduleId);
     	List<SeatEntity> listOfSeat = seatService.getListOfSeatBySchedule(scheduleId);
-    	//System.out.println("Id cua schedule" + scheduleService.getScheduleByScheduleId(scheduleId));
+    	
     	if (listOfSeat.isEmpty()) {
-    		seatService.createSeatByScheduleId(scheduleId);
-    		return new ResponseEntity<List<SeatEntity>>(listOfSeat, HttpStatus.OK); 
+    		if (scheduleService.getScheduleByScheduleId(scheduleId) != null) {
+    			seatService.createSeatByScheduleId(scheduleId);
+        		return new ResponseEntity<List<SeatEntity>>(listOfSeat, HttpStatus.OK); 
+    		} else {
+        		SeatError seatError = new SeatError(ErrorConstants.ER003, ErrorConstants.EM003);
+        		return new ResponseEntity<SeatError>(seatError, HttpStatus.OK);
+        	}    		
     	} else {
     		SeatError seatError = new SeatError(ErrorConstants.ER002, ErrorConstants.EM002);
     		return new ResponseEntity<SeatError>(seatError, HttpStatus.OK);

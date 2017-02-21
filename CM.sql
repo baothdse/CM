@@ -1,54 +1,57 @@
+drop database cm;
 create database if not exists cm;
 use cm;
 create table accounts (
-    user_id bigint(20) not null primary key auto_increment,
+    userId bigint(20) not null primary key auto_increment,
     username varchar(50),
     password varchar(50),
-    name_of_customer varchar(128),
+    nameOfCustomer varchar(128),
     birthdate date,
     role varchar (30)
 );
 create table movie (
-    movie_id bigint(20) not null primary key auto_increment,
-    movie_name varchar(200),
+    movieId bigint(20) not null primary key auto_increment,
+    movieName varchar(200),
 	introduction varchar(2000),
     actor varchar(200),
     genre varchar(50),
-    start_date date,
-    end_date date,
-    add_by_id bigint(20),
+    startDate date,
+    endDate date,
+    addById bigint(20),
     trailer varchar(300),
     picture varchar (300),
-    constraint fk_add foreign key (add_by_id) references accounts(user_id)
+    constraint fk_add foreign key (addById) references accounts(userId)
 );
 
 create table schedules (
-    schedule_id bigint(20) not null primary key auto_increment,
-    start_date date,
-    start_time time,
+    scheduleId bigint(20) not null primary key auto_increment,
+    startDate date,
+    startTime time,
     theatre varchar(50),
     room integer(2),
-    movie_id bigint(20),    
-    constraint fk_movie foreign key (movie_id) references movie(movie_id)
+    movieId bigint(20),    
+    constraint fk_movie foreign key (movieId) references movie(movieId)
 );
 
 create table seat (
-	seat_id bigint(20) not null primary key auto_increment,
-    seat_name varchar(4),
-    seat_status boolean,
-    schedule_id bigint(20),
-    constraint fk_schedule foreign key (schedule_id) references schedules(schedule_id)
+	seatId bigint(20) not null primary key auto_increment,
+    seatName varchar(4),
+    seatStatus boolean,
+    scheduleId bigint(20),
+    constraint fk_schedule foreign key (scheduleId) references schedules(scheduleId)
 );
 
 create table ticket (
-   ticket_id bigint(20) not null primary key auto_increment,
+   ticketId bigint(20) not null primary key auto_increment,
    username varchar(50),
    phone varchar(50),
    room integer(2),
-   start_date date,
-   start_time time,
+   startDate date,
+   startTime time,
    theatre varchar(50),
-   movie_name varchar(200),
+   movieName varchar(200),
    amount integer(2),
-   total_price varchar(50)
+   totalPrice varchar(50),
+   userId bigint(20),
+   constraint fk_buy foreign key (userId) references accounts(userId)
 );
