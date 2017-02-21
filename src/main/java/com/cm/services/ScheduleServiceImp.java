@@ -1,11 +1,9 @@
 package com.cm.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.cm.entities.MovieEntity;
 import com.cm.entities.ScheduleEntity;
 import com.cm.repositories.MovieRepository;
@@ -27,5 +25,9 @@ public class ScheduleServiceImp implements ScheduleService{
 		java.sql.Date tomorrowSql = new java.sql.Date( tomorrow.getTime());
 		return (List<ScheduleEntity>) scheduleRepository.findByMovie(movieID, todaySql, tomorrowSql);
 	}
+  @Override
+	public ScheduleEntity getScheduleByScheduleId(Long scheduleId) {
+		// TODO Auto-generated method stub
+		return scheduleRepository.findByScheduleId(scheduleId);
 
 }

@@ -12,7 +12,7 @@ import com.cm.constants.ErrorConstants;
 import com.cm.constants.ParamConstants;
 import com.cm.constants.URLConstants;
 import com.cm.entities.AccountEntity;
-import com.cm.error.ErrorCustome;
+import com.cm.error.CustomerError;
 import com.cm.services.interfaces.AccountService;
 
 
@@ -28,8 +28,8 @@ public class AccountController {
 			                       @RequestParam(value=ParamConstants.PASSWORD) String password){
 		AccountEntity profile = accountService.findByUserName(username);
 		if( profile==null || !profile.getPassword().equals(password)){
-			ErrorCustome err = new ErrorCustome(ErrorConstants.ER001, ErrorConstants.EM001);
-			return new ResponseEntity<ErrorCustome>(err, HttpStatus.OK);
+			CustomerError err = new CustomerError(ErrorConstants.ER001, ErrorConstants.EM001);
+			return new ResponseEntity<CustomerError>(err, HttpStatus.OK);
 		}
 		return new ResponseEntity<AccountEntity>(profile, HttpStatus.OK); 
 	}

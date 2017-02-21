@@ -1,12 +1,15 @@
 package com.cm.entities;
-// Generated Feb 17, 2017 11:38:04 AM by Hibernate Tools 4.3.1.Final
+// Generated Feb 21, 2017 8:16:36 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +22,7 @@ import javax.persistence.TemporalType;
 public class TicketEntity implements java.io.Serializable {
 
 	private Long ticketId;
+	private AccountEntity accounts;
 	private String username;
 	private String phone;
 	private Integer room;
@@ -32,8 +36,9 @@ public class TicketEntity implements java.io.Serializable {
 	public TicketEntity() {
 	}
 
-	public TicketEntity(String username, String phone, Integer room, Date startDate, Date startTime, String theatre,
-			String movieName, Integer amount, String totalPrice) {
+	public TicketEntity(AccountEntity accounts, String username, String phone, Integer room, Date startDate, Date startTime,
+			String theatre, String movieName, Integer amount, String totalPrice) {
+		this.accounts = accounts;
 		this.username = username;
 		this.phone = phone;
 		this.room = room;
@@ -55,6 +60,16 @@ public class TicketEntity implements java.io.Serializable {
 
 	public void setTicketId(Long ticketId) {
 		this.ticketId = ticketId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
+	public AccountEntity getAccounts() {
+		return this.accounts;
+	}
+
+	public void setAccounts(AccountEntity accounts) {
+		this.accounts = accounts;
 	}
 
 	@Column(name = "username", length = 50)
