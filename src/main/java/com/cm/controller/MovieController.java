@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cm.constants.URLConstants;
 import com.cm.entities.MovieEntity;
 import com.cm.services.interfaces.MovieService;
 
@@ -19,19 +20,19 @@ public class MovieController {
 	@Autowired
 	MovieService movieService;
 
-	@RequestMapping(value = "/comingSoon", method = RequestMethod.GET)
+	@RequestMapping(value = URLConstants.GET_MOVIE_SOON, method = RequestMethod.GET)
 	public ResponseEntity<?> getComingSoon() {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMovieComingSoon();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/moviePresenting", method = RequestMethod.GET)
+	@RequestMapping(value = URLConstants.GET_MOVIE_NOW, method = RequestMethod.GET)
 	public ResponseEntity<?> getMoviePresenting() {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMoviePresenting();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/getAllMovie", method = RequestMethod.GET)
+	@RequestMapping(value = URLConstants.GET_ALL_MOVIE, method = RequestMethod.GET)
 	public ResponseEntity<?> getAllMovie() {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getAllMovie();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
