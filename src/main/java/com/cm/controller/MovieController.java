@@ -22,14 +22,18 @@ public class MovieController {
 	@RequestMapping(value = "/comingSoon", method = RequestMethod.GET)
 	public ResponseEntity<?> getComingSoon() {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMovieComingSoon();
-		System.out.println(movie);
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/moviePresenting", method = RequestMethod.GET)
 	public ResponseEntity<?> getMoviePresenting() {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMoviePresenting();
-		System.out.println(movie);
+		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getAllMovie", method = RequestMethod.GET)
+	public ResponseEntity<?> getAllMovie() {
+		List<MovieEntity> movie = (List<MovieEntity>) movieService.getAllMovie();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 }

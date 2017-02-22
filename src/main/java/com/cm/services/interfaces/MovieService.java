@@ -8,4 +8,5 @@ public interface MovieService {
 	
       List<MovieEntity> getMovieComingSoon();
 	  List<MovieEntity> getMoviePresenting();
+	  List<MovieEntity> getAllMovie();
 }

@@ -16,4 +16,5 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 
 	@Query("SELECT t FROM MovieEntity t WHERE :nowMovie >= t.startDate and :nowMovie <= t.endDate")
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
+	
 }
