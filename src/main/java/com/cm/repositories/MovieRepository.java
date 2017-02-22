@@ -1,7 +1,5 @@
 package com.cm.repositories;
 
-
-
 import java.util.Date;
 import java.util.List;
 
@@ -11,11 +9,11 @@ import org.springframework.data.repository.query.Param;
 
 import com.cm.entities.MovieEntity;
 
-public interface MovieRepository extends JpaRepository<MovieEntity, Long>{
-    
+public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
+
 	@Query("SELECT t FROM MovieEntity t WHERE :nowDate < t.startDate")
 	List<MovieEntity> findByStartDate(@Param("nowDate") Date nowDate);
-	
+
 	@Query("SELECT t FROM MovieEntity t WHERE :nowMovie => t.startDate && :nowMovie <= t.endDate")
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
 }

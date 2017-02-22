@@ -1,6 +1,6 @@
 package com.cm.error;
 
-public class CustomerError {
+public class CustomError {
 	  private String errorCode;
 	  private String message;
   
@@ -16,7 +16,7 @@ public class CustomerError {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public CustomerError(String errorCode, String message) {
+	public CustomError(String errorCode, String message) {
 	super();
 	this.errorCode = errorCode;
 	this.message = message;

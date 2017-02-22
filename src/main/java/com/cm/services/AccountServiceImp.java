@@ -8,11 +8,10 @@ import com.cm.entities.AccountEntity;
 import com.cm.repositories.AccountRepository;
 import com.cm.services.interfaces.AccountService;
 
-
 @Service
 @Transactional
 public class AccountServiceImp implements AccountService {
-	
+
 	@Autowired
 	private AccountRepository accountRepository;
 
@@ -23,13 +22,13 @@ public class AccountServiceImp implements AccountService {
 
 	@Override
 	public void updateProfile(AccountEntity account) {
-		saveAccount(account);		
+		saveAccount(account);
 	}
 
 	@Override
 	public void saveAccount(AccountEntity account) {
 		accountRepository.save(account);
-		
+
 	}
 
 	@Override
@@ -37,8 +36,4 @@ public class AccountServiceImp implements AccountService {
 		return accountRepository.findByUsername(username);
 	}
 
-
-	
-	
-	
 }

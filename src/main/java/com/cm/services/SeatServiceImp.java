@@ -34,19 +34,17 @@ public class SeatServiceImp implements SeatService {
 
 	@Autowired
 	private ScheduleService scheduleService;
-	
+
 	@Override
 	public void createSeatByScheduleId(Long scheduleId) {
 		// TODO Auto-generated method stub
 		List<SeatEntity> listOfSeat = seatRepository.findBySchedules(scheduleId);
 		ScheduleEntity schedule = scheduleService.getScheduleByScheduleId(scheduleId);
-		
+
 		for (int index = 0; index < 50; index++) {
 			SeatEntity seat = new SeatEntity();
-			System.out.println("Size cua list" + listOfSeat.size());
 			seat.setSeatName(ParamConstants.LIST_OF_SEAT[index]);
 			seat.setSeatStatus(false);
-			//System.out.println("Id cua schedule" + scheduleRepository.findByScheduleId(scheduleId));
 			seat.setSchedules(schedule);
 			saveSeat(seat);
 			listOfSeat.add(seat);

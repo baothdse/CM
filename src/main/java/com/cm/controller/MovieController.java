@@ -18,17 +18,18 @@ public class MovieController {
 
 	@Autowired
 	MovieService movieService;
-	
-    @RequestMapping(value = "/comingSoon", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/comingSoon", method = RequestMethod.GET)
 	public ResponseEntity<?> getComingSoon() {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMovieComingSoon();
 		System.out.println(movie);
-		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK); 
+		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
-    @RequestMapping(value = "/moviePresenting", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/moviePresenting", method = RequestMethod.GET)
 	public ResponseEntity<?> getMoviePresenting() {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMoviePresenting();
 		System.out.println(movie);
-		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK); 
+		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 }
