@@ -12,7 +12,7 @@ import com.cm.entities.ScheduleEntity;
 public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> {
 
 	@Query("Select s from ScheduleEntity s where s.movie.movieId = :movieID and "
-			+ "(s.startDate = :today or s.startDate = :tomorow)")
+			+ "(s.startDate >= :today and s.startDate <= :tomorow)")
 	List<ScheduleEntity> findByMovie(@Param("movieID") Long movieID, @Param("today") Date today,
 			@Param("tomorow") Date tomorow);
 
