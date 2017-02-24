@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.cm.constants.ParamConstants;
 import com.cm.entities.MovieEntity;
 
 public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
@@ -17,4 +18,7 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 	@Query("SELECT t FROM MovieEntity t WHERE :nowMovie >= t.startDate and :nowMovie <= t.endDate")
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
 	
+	@Query("SELECT s FROM MovieEntity s, ScheduleEntity sc WHERE s.schedules.scheduleId = :scheduleId and "
+			+ "sc.scheduleId = :scheduleId")
+	List<MovieEntity> findBySchedules(@Param(value = ParamConstants.SCHEDULE_ID) Long scheduleId);
 }

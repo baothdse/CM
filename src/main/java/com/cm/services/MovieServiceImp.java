@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cm.entities.MovieEntity;
+import com.cm.entities.ScheduleEntity;
 import com.cm.repositories.MovieRepository;
 import com.cm.services.interfaces.MovieService;
+import com.cm.services.interfaces.ScheduleService;
 
 @Service
 @Transactional
@@ -33,5 +35,28 @@ public class MovieServiceImp implements MovieService {
 	@Override
 	public List<MovieEntity> getAllMovie() {
 		return (List<MovieEntity>) movieRepository.findAll();
+	}
+
+	@Override
+	public List<MovieEntity> getMovieBySchedule(Long scheduleId) {
+		// TODO Auto-generated method stub
+		return (List<MovieEntity>) movieRepository.findBySchedules(scheduleId);
+	}
+
+	@Override
+	public void saveMovie(MovieEntity movie) {
+		// TODO Auto-generated method stub
+		movieRepository.save(movie);
+	}
+
+	@Override
+	public void createMovieByScheduleId(Long scheduleId) {
+		List<MovieEntity> movieName = movieRepository.findBySchedules(scheduleId);
+
+		MovieEntity movie = new MovieEntity();
+		
+		movieName.add(movie);
+		saveMovie(movie);
+		System.out.println(movieName);
 	}
 }

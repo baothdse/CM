@@ -11,4 +11,6 @@ public class URLConstants {
 	public static final String GET_ALL_MOVIE = "/getAllMovie";
 	//Get seat
 	public static final String GET_SEAT_URL = "/schedule";
+	//Get movie
+	public static final String GET_MOVIE_URL = "/schedule";
 }
