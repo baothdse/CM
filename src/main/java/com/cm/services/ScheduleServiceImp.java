@@ -1,13 +1,16 @@
 package com.cm.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cm.entities.MovieEntity;
 import com.cm.entities.ScheduleEntity;
 import com.cm.repositories.ScheduleRepository;
+import com.cm.services.interfaces.MovieService;
 import com.cm.services.interfaces.ScheduleService;
 
 @Service
@@ -15,7 +18,7 @@ import com.cm.services.interfaces.ScheduleService;
 public class ScheduleServiceImp implements ScheduleService {
 
 	@Autowired
-	ScheduleRepository scheduleRepository;
+	private ScheduleRepository scheduleRepository;
 
 	@Override
 	public List<ScheduleEntity> getScheduleByMovie(Long movieID) {
@@ -30,5 +33,26 @@ public class ScheduleServiceImp implements ScheduleService {
 	public ScheduleEntity getScheduleByScheduleId(Long scheduleId) {
 		// TODO Auto-generated method stub
 		return scheduleRepository.findByScheduleId(scheduleId);
+	}
+
+	@Autowired
+	private MovieService movieService;
+	
+	@Override
+	public void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, int room) {
+		MovieEntity movie = movieService.getMovieByMovieId(movieId);
+		ScheduleEntity schedule = new ScheduleEntity();
+
+		schedule.setMovie(movie);
+		schedule.setStartDate(startDate);
+		schedule.setStartTime(startTime);
+		schedule.setTheatre(theatre);
+		schedule.setRoom(room);
+		scheduleRepository.save(schedule);
+	}
+
+	@Override
+	public List<ScheduleEntity> getAllSchedules() {
+		return scheduleRepository.findAll();
 	}
 }

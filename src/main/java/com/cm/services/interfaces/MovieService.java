@@ -6,6 +6,8 @@ import com.cm.entities.MovieEntity;
 
 public interface MovieService {
 	
-      List<MovieEntity> getMovieComingSoon();
-	  List<MovieEntity> getMoviePresenting();
+      List<MovieEntity> getComingSoonMovie();
+	  List<MovieEntity> getPresentingMovie();
+	  List<MovieEntity> getAllMovie();
+	  MovieEntity getMovieByMovieId(Long movieId);
 }

@@ -38,7 +38,7 @@ public class SeatServiceImp implements SeatService {
 	@Override
 	public void createSeatByScheduleId(Long scheduleId) {
 		// TODO Auto-generated method stub
-		List<SeatEntity> listOfSeat = seatRepository.findBySchedules(scheduleId);
+//		List<SeatEntity> listOfSeat = seatRepository.findBySchedules(scheduleId);
 		ScheduleEntity schedule = scheduleService.getScheduleByScheduleId(scheduleId);
 
 		for (int index = 0; index < 50; index++) {
@@ -47,8 +47,8 @@ public class SeatServiceImp implements SeatService {
 			seat.setSeatStatus(false);
 			seat.setSchedules(schedule);
 			saveSeat(seat);
-			listOfSeat.add(seat);
-			System.out.println(listOfSeat.get(index).getSeatName());
+//			listOfSeat.add(seat);
+//			System.out.println(listOfSeat.get(index).getSeatName());
 		}
 
 	}

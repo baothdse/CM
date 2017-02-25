@@ -15,18 +15,31 @@ import com.cm.services.interfaces.MovieService;
 public class MovieServiceImp implements MovieService {
 
 	@Autowired
-	MovieRepository movieRepository;
+	private MovieRepository movieRepository;
 
 	@Override
-	public List<MovieEntity> getMovieComingSoon() {
+	public List<MovieEntity> getComingSoonMovie() {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		return (List<MovieEntity>) movieRepository.findByStartDate(sqlDate);
 	}
-
-	public List<MovieEntity> getMoviePresenting() {
+	
+	@Override
+	public List<MovieEntity> getPresentingMovie() {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		return (List<MovieEntity>) movieRepository.findByStartEndDate(sqlDate);
 	}
+
+	@Override
+	public List<MovieEntity> getAllMovie() {
+		return movieRepository.findAll();
+	}
+
+	@Override
+	public MovieEntity getMovieByMovieId(Long movieId) {
+		return movieRepository.findByMovieId(movieId);
+	}
+	
+	
 }
