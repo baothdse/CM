@@ -49,7 +49,7 @@ public class ScheduleController {
 		
 		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();		
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
-		Date time = new SimpleDateFormat("hh:mm:ss").parse(startTime);
+		Date time = new SimpleDateFormat("hh:mm").parse(startTime);
 		
 		if (listOfSchedule.isEmpty()) {
 			scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room);
