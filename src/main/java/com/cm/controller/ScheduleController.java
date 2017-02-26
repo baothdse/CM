@@ -46,35 +46,36 @@ public class ScheduleController {
 													@RequestParam(value = "startTime") String startTime,
 													@RequestParam(value = "theatre") String theatre, 
 													@RequestParam(value = "room") int room) throws ParseException {
-		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();
-		for (int i = 0; i < listOfSchedule.size(); i++) {
-			System.out.println("List of schedule" + listOfSchedule.get(i).getTheatre());
-		}
 		
+		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();		
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
 		Date time = new SimpleDateFormat("hh:mm:ss").parse(startTime);
-		 
+		
 		if (listOfSchedule.isEmpty()) {
 			scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room);
-			Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId();
+			Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId() + 1;
 			seatService.createSeatByScheduleId(scheduleId);
 			return new ResponseEntity<List<ScheduleEntity>>(listOfSchedule, HttpStatus.OK);
 		} else {
+			CustomError error = new CustomError(ErrorConstants.ER004, ErrorConstants.EM004);
+			boolean flag = false;
 			for (ScheduleEntity schedule : listOfSchedule) {
-				if (schedule.getTheatre() == theatre && schedule.getRoom() == room
-						&& schedule.getStartDate() == date && schedule.getStartTime() == time) {
-					System.out.println("Debug" + schedule.getTheatre());
-					CustomError error = new CustomError(ErrorConstants.ER004, ErrorConstants.EM004);
-					return new ResponseEntity<CustomError>(error, HttpStatus.OK);
+				if (schedule.getTheatre().equals(theatre) && schedule.getRoom().equals(room)
+						&& schedule.getStartDate().equals(date) && schedule.getStartTime().equals(time)) {						
+					flag = true;
 				} else {
-					scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room);
-					Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId();
-					seatService.createSeatByScheduleId(scheduleId);
-					return new ResponseEntity<List<ScheduleEntity>>(listOfSchedule, HttpStatus.OK);
+					flag = false;
 				}
 			}
-		}
-		return new ResponseEntity<List<ScheduleEntity>>(listOfSchedule, HttpStatus.OK);
+			if (flag == false) {
+				scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room);
+				Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId() + 1;
+				seatService.createSeatByScheduleId(scheduleId);
+				return new ResponseEntity<List<ScheduleEntity>>(listOfSchedule, HttpStatus.OK);				
+			} else {
+				return new ResponseEntity<CustomError>(error, HttpStatus.OK);
+			}			
+		} 		
 	}
 
 	@RequestMapping(value = "/getShowtime", method = RequestMethod.POST)
