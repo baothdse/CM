@@ -8,6 +8,10 @@ public class ParamConstants {
 
 	//Schedule
 	public static final String SCHEDULE_ID = "scheduleId";
+	public static final String START_DATE = "startDate";
+	public static final String START_TIME = "startTime";
+	public static final String THEATRE = "theatre";
+	public static final String ROOM = "room";
 	
 	//List of Seat
 	public static final String[] LIST_OF_SEAT = {"A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", 

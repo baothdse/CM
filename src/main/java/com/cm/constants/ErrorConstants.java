@@ -17,5 +17,5 @@ public class ErrorConstants {
 	
 	//Error related to Schedule
 	public static final String EM003 = "This schedule is not existed.";
-	public static final String EM004 = "This schedule cannot be created. Please check the information you have entered!";
+	public static final String EM004 = "This schedule is existed. Please check the infomation you have entered!";
 }

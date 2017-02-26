@@ -55,4 +55,9 @@ public class ScheduleServiceImp implements ScheduleService {
 	public List<ScheduleEntity> getAllSchedules() {
 		return scheduleRepository.findAll();
 	}
+	
+	@Override
+	public List<ScheduleEntity> getScheduleByMovieId(Long movieId) {
+		return (List<ScheduleEntity>) scheduleRepository.findByMovie(movieId);
+	}
 }

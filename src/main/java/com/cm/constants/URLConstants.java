@@ -6,4 +6,7 @@ public class URLConstants {
 	
 	//Get seat
 	public static final String GET_SEAT_URL = "/schedule";
+	
+	//schedule
+	public static final String CREATE_SCHEDULE_URL = "/create-schedule";
 }

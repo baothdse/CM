@@ -13,4 +13,6 @@ public interface ScheduleService {
 	void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, int room);
 	
 	List<ScheduleEntity> getAllSchedules();
+
+	List<ScheduleEntity> getScheduleByMovieId(Long movieId);
 }
