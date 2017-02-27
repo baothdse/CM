@@ -62,7 +62,7 @@ public class ScheduleEntity implements java.io.Serializable {
 	public void setScheduleId(Long scheduleId) {
 		this.scheduleId = scheduleId;
 	}
-
+  
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "movieId")

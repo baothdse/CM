@@ -22,12 +22,14 @@ public class MovieController {
 
 	@RequestMapping(value = URLConstants.GET_MOVIE_SOON, method = RequestMethod.GET)
 	public ResponseEntity<?> getComingSoon() {
-		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMovieComingSoon();
+		List<MovieEntity> movie = (List<MovieEntity>) movieService.getComingSoonMovie();
+		System.out.println(movie);
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = URLConstants.GET_MOVIE_NOW, method = RequestMethod.GET)
 	public ResponseEntity<?> getMoviePresenting() {
+
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMoviePresenting();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
@@ -37,4 +39,10 @@ public class MovieController {
 		List<MovieEntity> movie = (List<MovieEntity>) movieService.getAllMovie();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
+	
+//	@RequestMapping(value = "/all-movie", method = RequestMethod.GET)
+//	public ResponseEntity<?> getAllMovie() {
+//		List<MovieEntity> allMovie = movieService.getAllMovie();
+//		return new ResponseEntity<List<MovieEntity>>(allMovie, HttpStatus.OK);
+//	}
 }
