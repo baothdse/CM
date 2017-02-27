@@ -68,9 +68,9 @@ public class MovieEntity implements java.io.Serializable {
 	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
-	
+
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "addById")
 	public AccountEntity getAccounts() {
 		return this.accounts;

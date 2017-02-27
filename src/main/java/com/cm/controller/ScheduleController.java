@@ -36,7 +36,6 @@ public class ScheduleController {
 			@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
 
 		ScheduleEntity schedule = scheduleService.getScheduleByScheduleId(scheduleId);
-		// System.out.println(listOfSeat);
 		return new ResponseEntity<ScheduleEntity>(schedule, HttpStatus.OK);
 
 	}
@@ -81,7 +80,7 @@ public class ScheduleController {
 		} 		
 	}
 
-	@RequestMapping(value = "/getShowtime", method = RequestMethod.POST)
+	@RequestMapping(value = URLConstants.GET_SCHEDULE_MOVIE, method = RequestMethod.POST)
 	public ResponseEntity<?> getComingSoon(@RequestParam(value = ParamConstants.MOVIE_ID) Long movieID) {
 		List<ScheduleEntity> schedule = (List<ScheduleEntity>) scheduleService.getScheduleByMovie(movieID);
 		return new ResponseEntity<List<ScheduleEntity>>(schedule, HttpStatus.OK);

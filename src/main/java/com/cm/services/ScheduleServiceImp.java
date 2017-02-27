@@ -23,7 +23,7 @@ public class ScheduleServiceImp implements ScheduleService {
 	@Override
 	public List<ScheduleEntity> getScheduleByMovie(Long movieID) {
 		java.util.Date today = new java.util.Date();
-		java.util.Date tomorrow = new java.util.Date(today.getTime() + (1000 * 60 * 60 * 24));
+		java.util.Date tomorrow = new java.util.Date(today.getTime() + 7*(1000 * 60 * 60 * 24));
 		java.sql.Date todaySql = new java.sql.Date(today.getTime());
 		java.sql.Date tomorrowSql = new java.sql.Date(tomorrow.getTime());
 		return (List<ScheduleEntity>) scheduleRepository.findByMovie(movieID, todaySql, tomorrowSql);

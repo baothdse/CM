@@ -18,4 +18,5 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
 	
 	MovieEntity findByMovieId(Long movieId);
+
 }

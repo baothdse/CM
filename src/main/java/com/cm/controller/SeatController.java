@@ -39,7 +39,6 @@ public class SeatController {
 
 	@RequestMapping(value = "/schedule/create-seat", method = RequestMethod.POST)
 	public ResponseEntity<?> createSeat(@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
-		System.out.println(scheduleId);
 		List<SeatEntity> listOfSeat = seatService.getListOfSeatBySchedule(scheduleId);
 
 		if (listOfSeat.isEmpty()) {

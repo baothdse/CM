@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -28,13 +29,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "schedules", catalog = "cm")
-@NamedStoredProcedureQueries({
-	  @NamedStoredProcedureQuery( name = "findByMovie", procedureName = "FIND_SHOWTIME_BY_MOVIE", 
-	                              resultClasses = { ScheduleEntity.class }, 
-								   parameters = { @StoredProcedureParameter(name = "movieID", 
-																		    type = Integer.class, 
-																		    mode = ParameterMode.IN) }) 
-	})
 public class ScheduleEntity implements java.io.Serializable {
 
 	private Long scheduleId;
@@ -68,9 +62,9 @@ public class ScheduleEntity implements java.io.Serializable {
 	public void setScheduleId(Long scheduleId) {
 		this.scheduleId = scheduleId;
 	}
-	
+  
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "movieId")
 	public MovieEntity getMovie() {
 		return this.movie;

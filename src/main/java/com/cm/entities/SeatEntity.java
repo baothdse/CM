@@ -45,9 +45,9 @@ public class SeatEntity implements java.io.Serializable {
 	public void setSeatId(Long seatId) {
 		this.seatId = seatId;
 	}
-	
+  
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "scheduleId")
 	public ScheduleEntity getSchedules() {
 		return this.schedules;

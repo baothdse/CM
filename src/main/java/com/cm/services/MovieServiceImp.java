@@ -40,6 +40,4 @@ public class MovieServiceImp implements MovieService {
 	public MovieEntity getMovieByMovieId(Long movieId) {
 		return movieRepository.findByMovieId(movieId);
 	}
-	
-	
 }
