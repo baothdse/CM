@@ -38,9 +38,9 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
-	public List<MovieEntity> getMovieBySchedule(Long scheduleId) {
+	public List<MovieEntity> getMovieByUserId(Long userId) {
 		// TODO Auto-generated method stub
-		return (List<MovieEntity>) movieRepository.findBySchedules(scheduleId);
+		return (List<MovieEntity>) movieRepository.findByUserId(userId);
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
-	public void createMovieByScheduleId(Long scheduleId) {
-		List<MovieEntity> movieName = movieRepository.findBySchedules(scheduleId);
+	public void createMovieByUserId(Long userId) {
+		List<MovieEntity> movieName = movieRepository.findByUserId(userId);
 
 		MovieEntity movie = new MovieEntity();
 		

@@ -10,7 +10,7 @@ public interface MovieService {
 	  List<MovieEntity> getMoviePresenting();
 	  List<MovieEntity> getAllMovie();
 	  
-	  List<MovieEntity> getMovieBySchedule(Long scheduleId);
+	  List<MovieEntity> getMovieByUserId(Long userId);
 	  void saveMovie(MovieEntity movie);
-	  void createMovieByScheduleId(Long scheduleId);
+	  void createMovieByUserId(Long userId);
 }

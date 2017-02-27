@@ -9,6 +9,9 @@ public class ParamConstants {
 	//Schedule
 	public static final String SCHEDULE_ID = "scheduleId";
 	
+	//User
+	public static final String USER_ID = "userId";
+	
 	//List of Seat
 	public static final String[] LIST_OF_SEAT = {"A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", 
 											 "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", 
