@@ -30,7 +30,7 @@ public class MovieController {
 	@RequestMapping(value = URLConstants.GET_MOVIE_NOW, method = RequestMethod.GET)
 	public ResponseEntity<?> getMoviePresenting() {
 
-		List<MovieEntity> movie = (List<MovieEntity>) movieService.getMoviePresenting();
+		List<MovieEntity> movie = (List<MovieEntity>) movieService.getPresentingMovie();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 	
