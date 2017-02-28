@@ -48,36 +48,36 @@ public class ScheduleController {
 													@RequestParam(value = ParamConstants.ROOM) int room) throws ParseException {
 		
 		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();
+		ScheduleEntity scheduleEntity = null;
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
 		Date time = new SimpleDateFormat("hh:mm").parse(startTime);
+		boolean checkDuplicate = true;
 		
 		if (listOfSchedule.isEmpty()) {
-			scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room);
-			Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId() + 1;
+			scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room, listOfSchedule);
+			Long scheduleId = listOfSchedule.get(listOfSchedule.size() -1).getScheduleId();
 			seatService.createSeatByScheduleId(scheduleId);
-			List<ScheduleEntity> listOfScheduleByMovieId = scheduleService.getScheduleByMovieId(movieId);
-			return new ResponseEntity<List<ScheduleEntity>>(listOfScheduleByMovieId, HttpStatus.OK);
+			scheduleEntity = listOfSchedule.get(listOfSchedule.size() - 1);
 		} else {
 			CustomError error = new CustomError(ErrorConstants.ER004, ErrorConstants.EM004);
-			boolean checkDuplicated = false;
 			for (ScheduleEntity schedule : listOfSchedule) {
 				if (schedule.getTheatre().equals(theatre) && schedule.getRoom().equals(room)
 						&& schedule.getStartDate().equals(date) && schedule.getStartTime().equals(time)) {						
-					checkDuplicated = true;
+					checkDuplicate = false;
 				} else {
-					checkDuplicated = false;
+					checkDuplicate = true;
 				}
-			}
-			if (checkDuplicated == false) {
-				scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room);
-				Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId() + 1;
-				seatService.createSeatByScheduleId(scheduleId);
-				List<ScheduleEntity> listOfScheduleByMovieId = scheduleService.getScheduleByMovieId(movieId);
-				return new ResponseEntity<List<ScheduleEntity>>(listOfScheduleByMovieId, HttpStatus.OK);				
-			} else {
+			}	
+			if (checkDuplicate == false) {
 				return new ResponseEntity<CustomError>(error, HttpStatus.OK);
-			}			
-		} 		
+			} else {
+				scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room, listOfSchedule);
+				Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId();
+				seatService.createSeatByScheduleId(scheduleId);
+				scheduleEntity = listOfSchedule.get(listOfSchedule.size() - 1);
+			}
+		}
+		return new ResponseEntity<ScheduleEntity>(scheduleEntity, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = URLConstants.GET_SCHEDULE_MOVIE, method = RequestMethod.POST)

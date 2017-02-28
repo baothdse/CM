@@ -1,6 +1,8 @@
 package com.cm.entities;
-// Generated Feb 21, 2017 8:16:36 PM by Hibernate Tools 4.3.1.Final
+// Generated Feb 28, 2017 10:36:06 AM by Hibernate Tools 4.3.1.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,14 +27,16 @@ public class SeatEntity implements java.io.Serializable {
 	private ScheduleEntity schedules;
 	private String seatName;
 	private Boolean seatStatus;
+	private Set<TicketEntity> tickets = new HashSet<TicketEntity>(0);
 
 	public SeatEntity() {
 	}
 
-	public SeatEntity(ScheduleEntity schedules, String seatName, Boolean seatStatus) {
+	public SeatEntity(ScheduleEntity schedules, String seatName, Boolean seatStatus, Set<TicketEntity> tickets) {
 		this.schedules = schedules;
 		this.seatName = seatName;
 		this.seatStatus = seatStatus;
+		this.tickets = tickets;
 	}
 
 	@Id
@@ -45,9 +50,9 @@ public class SeatEntity implements java.io.Serializable {
 	public void setSeatId(Long seatId) {
 		this.seatId = seatId;
 	}
-  
+	
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "scheduleId")
 	public ScheduleEntity getSchedules() {
 		return this.schedules;
@@ -73,6 +78,15 @@ public class SeatEntity implements java.io.Serializable {
 
 	public void setSeatStatus(Boolean seatStatus) {
 		this.seatStatus = seatStatus;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "seat")
+	public Set<TicketEntity> getTickets() {
+		return this.tickets;
+	}
+
+	public void setTickets(Set<TicketEntity> tickets) {
+		this.tickets = tickets;
 	}
 
 }

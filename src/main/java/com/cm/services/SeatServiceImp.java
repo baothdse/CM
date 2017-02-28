@@ -48,9 +48,24 @@ public class SeatServiceImp implements SeatService {
 			seat.setSchedules(schedule);
 			saveSeat(seat);
 //			listOfSeat.add(seat);
-//			System.out.println(listOfSeat.get(index).getSeatName());
 		}
+	}
 
+	@Override
+	public SeatEntity getSeatBySeatId(Long seatId) {
+		// TODO Auto-generated method stub
+		return seatRepository.findBySeatId(seatId);
+	}
+	
+	@Override
+	public boolean changeSeatState(SeatEntity seatEntity) {
+		if (seatEntity.getSeatStatus() == false) {
+			seatEntity.setSeatStatus(true);
+			seatRepository.setFixedSeatStatusFor(seatEntity.getSeatStatus(), seatEntity.getSeatId());
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

@@ -39,7 +39,8 @@ public class ScheduleServiceImp implements ScheduleService {
 	private MovieService movieService;
 	
 	@Override
-	public void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, int room) {
+	public void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, 
+									int room, List<ScheduleEntity> lisftOfSchedule) {
 		MovieEntity movie = movieService.getMovieByMovieId(movieId);
 		ScheduleEntity schedule = new ScheduleEntity();
 
@@ -49,6 +50,7 @@ public class ScheduleServiceImp implements ScheduleService {
 		schedule.setTheatre(theatre);
 		schedule.setRoom(room);
 		scheduleRepository.save(schedule);
+		lisftOfSchedule.add(schedule);
 	}
 
 	@Override
@@ -60,4 +62,5 @@ public class ScheduleServiceImp implements ScheduleService {
 	public List<ScheduleEntity> getScheduleByMovieId(Long movieId) {
 		return (List<ScheduleEntity>) scheduleRepository.findByMovie(movieId);
 	}
+
 }

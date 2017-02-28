@@ -10,9 +10,11 @@ public interface ScheduleService {
 
 	ScheduleEntity getScheduleByScheduleId(Long scheduleId);
 
-	void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, int room);
+	void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, 
+									int room, List<ScheduleEntity> lisftOfSchedule);
 	
 	List<ScheduleEntity> getAllSchedules();
 
 	List<ScheduleEntity> getScheduleByMovieId(Long movieId);
+	
 }
