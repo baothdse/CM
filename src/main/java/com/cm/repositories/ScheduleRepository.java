@@ -28,4 +28,5 @@ public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> 
 	
 	@Query("Select s from ScheduleEntity s, MovieEntity m where s.movie.movieId = :movieId and m.movieId = :movieId ")
 	List<ScheduleEntity> findByMovie(@Param("movieId") Long movieId);
+
 }

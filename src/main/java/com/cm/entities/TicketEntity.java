@@ -1,7 +1,6 @@
 package com.cm.entities;
-// Generated Feb 21, 2017 8:16:36 PM by Hibernate Tools 4.3.1.Final
+// Generated Feb 28, 2017 10:36:06 AM by Hibernate Tools 4.3.1.Final
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,31 +22,20 @@ public class TicketEntity implements java.io.Serializable {
 
 	private Long ticketId;
 	private AccountEntity accounts;
+	private SeatEntity seat;
 	private String username;
 	private String phone;
-	private Integer room;
-	private Date startDate;
-	private Date startTime;
-	private String theatre;
-	private String movieName;
-	private Integer amount;
-	private String totalPrice;
+	private Long price;
 
 	public TicketEntity() {
 	}
 
-	public TicketEntity(AccountEntity accounts, String username, String phone, Integer room, Date startDate, Date startTime,
-			String theatre, String movieName, Integer amount, String totalPrice) {
+	public TicketEntity(AccountEntity accounts, SeatEntity seat, String username, String phone, Long price) {
 		this.accounts = accounts;
+		this.seat = seat;
 		this.username = username;
 		this.phone = phone;
-		this.room = room;
-		this.startDate = startDate;
-		this.startTime = startTime;
-		this.theatre = theatre;
-		this.movieName = movieName;
-		this.amount = amount;
-		this.totalPrice = totalPrice;
+		this.price = price;
 	}
 
 	@Id
@@ -63,7 +49,7 @@ public class TicketEntity implements java.io.Serializable {
 	public void setTicketId(Long ticketId) {
 		this.ticketId = ticketId;
 	}
-	
+
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
@@ -73,6 +59,17 @@ public class TicketEntity implements java.io.Serializable {
 
 	public void setAccounts(AccountEntity accounts) {
 		this.accounts = accounts;
+	}
+	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seatId")
+	public SeatEntity getSeat() {
+		return this.seat;
+	}
+
+	public void setSeat(SeatEntity seat) {
+		this.seat = seat;
 	}
 
 	@Column(name = "username", length = 50)
@@ -93,69 +90,13 @@ public class TicketEntity implements java.io.Serializable {
 		this.phone = phone;
 	}
 
-	@Column(name = "room")
-	public Integer getRoom() {
-		return this.room;
+	@Column(name = "price")
+	public Long getPrice() {
+		return this.price;
 	}
 
-	public void setRoom(Integer room) {
-		this.room = room;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "startDate", length = 10)
-	public Date getStartDate() {
-		return this.startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	@Temporal(TemporalType.TIME)
-	@Column(name = "startTime", length = 8)
-	public Date getStartTime() {
-		return this.startTime;
-	}
-
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-
-	@Column(name = "theatre", length = 50)
-	public String getTheatre() {
-		return this.theatre;
-	}
-
-	public void setTheatre(String theatre) {
-		this.theatre = theatre;
-	}
-
-	@Column(name = "movieName", length = 200)
-	public String getMovieName() {
-		return this.movieName;
-	}
-
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
-	}
-
-	@Column(name = "amount")
-	public Integer getAmount() {
-		return this.amount;
-	}
-
-	public void setAmount(Integer amount) {
-		this.amount = amount;
-	}
-
-	@Column(name = "totalPrice", length = 50)
-	public String getTotalPrice() {
-		return this.totalPrice;
-	}
-
-	public void setTotalPrice(String totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 
 }
