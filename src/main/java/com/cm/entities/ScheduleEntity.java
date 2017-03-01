@@ -1,5 +1,5 @@
 package com.cm.entities;
-// Generated Feb 28, 2017 10:36:06 AM by Hibernate Tools 4.3.1.Final
+// Generated Mar 1, 2017 1:55:47 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -32,17 +32,20 @@ public class ScheduleEntity implements java.io.Serializable {
 	private Date startTime;
 	private String theatre;
 	private Integer room;
+	private Boolean isActive;
 	private Set<SeatEntity> seats = new HashSet<SeatEntity>(0);
 
 	public ScheduleEntity() {
 	}
 
-	public ScheduleEntity(MovieEntity movie, Date startDate, Date startTime, String theatre, Integer room, Set<SeatEntity> seats) {
+	public ScheduleEntity(MovieEntity movie, Date startDate, Date startTime, String theatre, Integer room, Boolean isActive,
+			Set<SeatEntity> seats) {
 		this.movie = movie;
 		this.startDate = startDate;
 		this.startTime = startTime;
 		this.theatre = theatre;
 		this.room = room;
+		this.isActive = isActive;
 		this.seats = seats;
 	}
 
@@ -105,6 +108,15 @@ public class ScheduleEntity implements java.io.Serializable {
 
 	public void setRoom(Integer room) {
 		this.room = room;
+	}
+
+	@Column(name = "isActive")
+	public Boolean getIsActive() {
+		return this.isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "schedules")
