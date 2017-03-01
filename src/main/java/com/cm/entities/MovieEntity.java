@@ -1,16 +1,14 @@
 package com.cm.entities;
-// Generated Mar 1, 2017 2:04:33 PM by Hibernate Tools 4.3.1.Final
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated Mar 1, 2017 2:36:24 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,15 +36,15 @@ public class MovieEntity implements java.io.Serializable {
 	private Date endDate;
 	private String trailer;
 	private String picture;
-	private Boolean isActive;
 	private Integer lenght;
+	private Boolean isActive;
 	private Set<ScheduleEntity> scheduleses = new HashSet<ScheduleEntity>(0);
 
 	public MovieEntity() {
 	}
 
 	public MovieEntity(AccountEntity accounts, String movieName, String introduction, String actor, String genre, Date startDate,
-			Date endDate, String trailer, String picture, Boolean isActive, Integer lenght,
+			Date endDate, String trailer, String picture, Integer lenght, Boolean isActive,
 			Set<ScheduleEntity> scheduleses) {
 		this.accounts = accounts;
 		this.movieName = movieName;
@@ -57,8 +55,8 @@ public class MovieEntity implements java.io.Serializable {
 		this.endDate = endDate;
 		this.trailer = trailer;
 		this.picture = picture;
-		this.isActive = isActive;
 		this.lenght = lenght;
+		this.isActive = isActive;
 		this.scheduleses = scheduleses;
 	}
 
@@ -159,15 +157,6 @@ public class MovieEntity implements java.io.Serializable {
 		this.picture = picture;
 	}
 
-	@Column(name = "isActive")
-	public Boolean getIsActive() {
-		return this.isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	@Column(name = "lenght")
 	public Integer getLenght() {
 		return this.lenght;
@@ -175,6 +164,15 @@ public class MovieEntity implements java.io.Serializable {
 
 	public void setLenght(Integer lenght) {
 		this.lenght = lenght;
+	}
+
+	@Column(name = "isActive")
+	public Boolean getIsActive() {
+		return this.isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	@JsonIgnore

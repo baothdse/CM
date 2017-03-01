@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -24,9 +25,23 @@ public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> 
 	List<ScheduleEntity> findByMovie(@Param("movieID") Long movieID, @Param("today") Date today,
 			@Param("tomorow") Date tomorow);
 
+	
+	/**
+	 * @author BaoTHD
+	 * @param scheduleId
+	 * @return
+	 */
 	ScheduleEntity findByScheduleId(Long scheduleId);
 	
+	/**
+	 * @author BaoTHD
+	 * @param movieId
+	 * @return
+	 */
 	@Query("Select s from ScheduleEntity s, MovieEntity m where s.movie.movieId = :movieId and m.movieId = :movieId ")
 	List<ScheduleEntity> findByMovie(@Param("movieId") Long movieId);
 
+	@Modifying
+	@Query("Update ScheduleEntity s set s.isActive = :isActive where s.isActive = true and s.scheduleId = :scheduleId")
+	void setFixedScheduleFor(@Param("isActive") boolean isActive, @Param("scheduleId") Long scheduleId );
 }

@@ -31,11 +31,17 @@ public class MovieServiceImp implements MovieService {
 		return (List<MovieEntity>) movieRepository.findByStartEndDate(sqlDate);
 	}
 
+	/* 
+	 * @author: BaoTHD
+	 */
 	@Override
 	public List<MovieEntity> getAllMovie() {
 		return movieRepository.findAll();
 	}
 
+	/* 
+	 * @author: BaoTHD
+	 */
 	@Override
 	public MovieEntity getMovieByMovieId(Long movieId) {
 		return movieRepository.findByMovieId(movieId);

@@ -26,6 +26,9 @@ public class TicketServiceImp implements TicketService {
 	@Autowired
 	private TicketRepository ticketRepository;
 	
+	/* 
+	 * @author: BaoTHD
+	 */
 	@Override
 	public boolean saveTicket(String username, String phone, Long price, Long seatId, Long userId,
 								List<TicketEntity> listOfTicket) {
@@ -50,6 +53,9 @@ public class TicketServiceImp implements TicketService {
 //		return ticketRepository.findBySeat(seatId);
 //	}
 
+	/* 
+	 * @author: BaoTHD
+	 */
 	@Override
 	public List<TicketEntity> getAllTicketBySeatId(List<Long> listOfSeatId) {
 		// TODO Auto-generated method stub

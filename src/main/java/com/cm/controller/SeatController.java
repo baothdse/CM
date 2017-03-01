@@ -17,6 +17,10 @@ import com.cm.entities.SeatEntity;
 import com.cm.error.CustomError;
 import com.cm.services.interfaces.SeatService;
 
+/**
+ * @author BaoTHD
+ *
+ */
 @RestController
 @RequestMapping
 public class SeatController {
@@ -24,6 +28,11 @@ public class SeatController {
 	@Autowired
 	private SeatService seatService;
 
+	/**
+	 * @author BaoTHD
+	 * @param scheduleId
+	 * @return
+	 */
 	@RequestMapping(value = URLConstants.GET_SEAT_URL, method = RequestMethod.GET)
 	public ResponseEntity<?> getSeatBySchedule(@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
 
@@ -54,6 +63,11 @@ public class SeatController {
 //		}
 //	}
 	
+	/**
+	 * @author BaoTHD
+	 * @param seatId
+	 * @return
+	 */
 	@RequestMapping(value = "/changeSeatStatus", method = RequestMethod.POST)
 	public ResponseEntity<?> changeSeatStatus(@RequestParam(value = "seatId") Long seatId) {
 		SeatEntity seatEntity = seatService.getSeatBySeatId(seatId);

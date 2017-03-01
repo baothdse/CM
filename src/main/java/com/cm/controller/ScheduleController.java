@@ -31,6 +31,11 @@ public class ScheduleController {
 	@Autowired
 	private SeatService seatService;
 
+	/**
+	 * @author BaoTHD
+	 * @param scheduleId
+	 * @return
+	 */
 	@RequestMapping(value = "/schedules", method = RequestMethod.GET)
 	public ResponseEntity<?> getScheduleByScheduleId(
 			@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
@@ -40,6 +45,16 @@ public class ScheduleController {
 
 	}
 
+	/**
+	 * @author BaoTHD
+	 * @param movieId
+	 * @param startDate
+	 * @param startTime
+	 * @param theatre
+	 * @param room
+	 * @return
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = URLConstants.CREATE_SCHEDULE_URL, method = RequestMethod.POST)
 	public ResponseEntity<?> createScheduleByMovie(@RequestParam(value = "movieId") Long movieId,
 													@RequestParam(value = ParamConstants.START_DATE) String startDate, 
@@ -86,10 +101,29 @@ public class ScheduleController {
 		return new ResponseEntity<List<ScheduleEntity>>(schedule, HttpStatus.OK);
 	}
 
+	
+	@RequestMapping(value = "/changeScheduleState", method = RequestMethod.POST)
+	public ResponseEntity<?> deleteSchedule(@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
+		
+		ScheduleEntity schedule = scheduleService.getScheduleByScheduleId(scheduleId);
+		CustomError error = new CustomError(ErrorConstants.ER005, ErrorConstants.EM005);
+		if (scheduleService.changeScheduleState(schedule) == true) {
+			return new ResponseEntity<ScheduleEntity>(schedule, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<CustomError>(error, HttpStatus.OK);
+		}
+		
+	}
+	/**
+	 * @author BaoTHD
+	 * @return
+	 */
 	@RequestMapping(value = "/getAllSchedule", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllSchedule() {
 		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();
 		return new ResponseEntity<List<ScheduleEntity>>(listOfSchedule, HttpStatus.OK);
 	}
-
+	
+	
 }
+	

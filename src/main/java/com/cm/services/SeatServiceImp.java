@@ -13,6 +13,10 @@ import com.cm.repositories.SeatRepository;
 import com.cm.services.interfaces.ScheduleService;
 import com.cm.services.interfaces.SeatService;
 
+/**
+ * @author BaoTHD
+ *
+ */
 @Service
 @Transactional
 public class SeatServiceImp implements SeatService {
@@ -56,7 +60,7 @@ public class SeatServiceImp implements SeatService {
 		// TODO Auto-generated method stub
 		return seatRepository.findBySeatId(seatId);
 	}
-	
+
 	@Override
 	public boolean changeSeatState(SeatEntity seatEntity) {
 		if (seatEntity.getSeatStatus() == false) {
