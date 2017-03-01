@@ -9,5 +9,6 @@ import com.cm.entities.AccountEntity;
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
 
 	AccountEntity findByUsername(String name);
-
+	
+	AccountEntity findByUserId(Long userId);
 }

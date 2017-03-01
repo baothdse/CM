@@ -1,5 +1,5 @@
 package com.cm.entities;
-// Generated Feb 21, 2017 8:16:36 PM by Hibernate Tools 4.3.1.Final
+// Generated Feb 28, 2017 10:36:06 AM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -68,9 +68,9 @@ public class MovieEntity implements java.io.Serializable {
 	public void setMovieId(Long movieId) {
 		this.movieId = movieId;
 	}
-
+	
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "addById")
 	public AccountEntity getAccounts() {
 		return this.accounts;
