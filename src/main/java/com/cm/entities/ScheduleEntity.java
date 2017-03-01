@@ -107,6 +107,7 @@ public class ScheduleEntity implements java.io.Serializable {
 		this.room = room;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "schedules")
 	public Set<SeatEntity> getSeats() {
 		return this.seats;

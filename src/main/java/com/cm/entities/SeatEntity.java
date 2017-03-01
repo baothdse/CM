@@ -80,6 +80,7 @@ public class SeatEntity implements java.io.Serializable {
 		this.seatStatus = seatStatus;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "seat")
 	public Set<TicketEntity> getTickets() {
 		return this.tickets;
