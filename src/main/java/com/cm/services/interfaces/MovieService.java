@@ -10,5 +10,7 @@ public interface MovieService {
 	  List<MovieEntity> getPresentingMovie();
 	  List<MovieEntity> getAllMovie();
 	  MovieEntity getMovieByMovieId(Long movieId);
+	  
+	  boolean changeMovieState(MovieEntity movie);
 
 }

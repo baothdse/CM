@@ -89,10 +89,8 @@ public class ScheduleServiceImp implements ScheduleService {
 			schedule.setIsActive(false);
 			scheduleRepository.setFixedScheduleFor(schedule.getIsActive(), schedule.getScheduleId());
 			return true;
-		} else {
-			return false;
-		}
-		
+		} 
+		return false;
 	}
 	
 	

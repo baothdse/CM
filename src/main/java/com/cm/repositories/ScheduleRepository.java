@@ -40,7 +40,12 @@ public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> 
 	 */
 	@Query("Select s from ScheduleEntity s, MovieEntity m where s.movie.movieId = :movieId and m.movieId = :movieId ")
 	List<ScheduleEntity> findByMovie(@Param("movieId") Long movieId);
+	
 
+	/**
+	 * @param isActive
+	 * @param scheduleId
+	 */
 	@Modifying
 	@Query("Update ScheduleEntity s set s.isActive = :isActive where s.isActive = true and s.scheduleId = :scheduleId")
 	void setFixedScheduleFor(@Param("isActive") boolean isActive, @Param("scheduleId") Long scheduleId );

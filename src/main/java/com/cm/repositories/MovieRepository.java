@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -18,5 +19,13 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
 	
 	MovieEntity findByMovieId(Long movieId);
-
+	
+	/**
+	 * @author BaoTHD
+	 * @param isActive
+	 * @param movieId
+	 */
+	@Modifying
+	@Query("Update MovieEntity m set m.isActive = :isActive where m.isActive = true and m.movieId = :movieId")
+	void setFixedMovieFor(@Param("isActive") boolean isActive, @Param("movieId") Long movieId );
 }
