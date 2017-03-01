@@ -1,5 +1,5 @@
 package com.cm.entities;
-// Generated Feb 28, 2017 10:36:06 AM by Hibernate Tools 4.3.1.Final
+// Generated Mar 1, 2017 1:55:47 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +49,7 @@ public class TicketEntity implements java.io.Serializable {
 	public void setTicketId(Long ticketId) {
 		this.ticketId = ticketId;
 	}
-
+	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")

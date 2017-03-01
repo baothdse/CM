@@ -22,6 +22,7 @@ create table movie (
     trailer varchar(300),
     picture varchar (300),
     isActive boolean,
+    lenght time,
     constraint fk_add foreign key (addById) references accounts(userId)
 );
 
