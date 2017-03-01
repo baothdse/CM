@@ -10,6 +10,10 @@ import com.cm.entities.MovieEntity;
 import com.cm.repositories.MovieRepository;
 import com.cm.services.interfaces.MovieService;
 
+/**
+ * @author BaoTHD
+ *
+ */
 @Service
 @Transactional
 public class MovieServiceImp implements MovieService {
@@ -45,5 +49,21 @@ public class MovieServiceImp implements MovieService {
 	@Override
 	public MovieEntity getMovieByMovieId(Long movieId) {
 		return movieRepository.findByMovieId(movieId);
+	}
+
+	
+	/* 
+	 * @author: BaoTHD
+	 * Change isActive from true to false
+	 */
+	@Override
+	public boolean changeMovieState(MovieEntity movie) {
+		// TODO Auto-generated method stub
+		if (movie.getIsActive() == true) {
+			movie.setIsActive(false);
+			movieRepository.setFixedMovieFor(movie.getIsActive(), movie.getMovieId());
+			return true;
+		}
+		return false;
 	}
 }

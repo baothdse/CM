@@ -103,7 +103,7 @@ public class ScheduleController {
 
 	
 	@RequestMapping(value = "/changeScheduleState", method = RequestMethod.POST)
-	public ResponseEntity<?> deleteSchedule(@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
+	public ResponseEntity<?> changeScheduleState(@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
 		
 		ScheduleEntity schedule = scheduleService.getScheduleByScheduleId(scheduleId);
 		CustomError error = new CustomError(ErrorConstants.ER005, ErrorConstants.EM005);
