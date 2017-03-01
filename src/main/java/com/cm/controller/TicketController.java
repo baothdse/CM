@@ -25,6 +25,15 @@ public class TicketController {
 	@Autowired
 	private SeatService seatService;
 	
+	/**
+	 * @author BaoTHD
+	 * @param username
+	 * @param phone
+	 * @param price
+	 * @param listOfSeatId
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping(value = "/bookTicket", method = RequestMethod.POST)
 	public ResponseEntity<?> bookTicketBySeatId (@RequestParam(value = "username") String username,
 												@RequestParam(value = "phone") String phone,											

@@ -10,9 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cm.entities.MovieEntity;
 import com.cm.entities.ScheduleEntity;
 import com.cm.repositories.ScheduleRepository;
+import com.cm.repositories.SeatRepository;
 import com.cm.services.interfaces.MovieService;
 import com.cm.services.interfaces.ScheduleService;
 
+/**
+ * @author BaoTHD
+ *
+ */
 @Service
 @Transactional
 public class ScheduleServiceImp implements ScheduleService {
@@ -38,6 +43,9 @@ public class ScheduleServiceImp implements ScheduleService {
 	@Autowired
 	private MovieService movieService;
 	
+	/* 
+	 * @author: BaoTHD
+	 */
 	@Override
 	public void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, 
 									int room, List<ScheduleEntity> lisftOfSchedule) {
@@ -49,18 +57,44 @@ public class ScheduleServiceImp implements ScheduleService {
 		schedule.setStartTime(startTime);
 		schedule.setTheatre(theatre);
 		schedule.setRoom(room);
+		schedule.setIsActive(true);
 		scheduleRepository.save(schedule);
 		lisftOfSchedule.add(schedule);
 	}
 
+	/* 
+	 * @author: BaoTHD
+	 */
 	@Override
 	public List<ScheduleEntity> getAllSchedules() {
 		return scheduleRepository.findAll();
 	}
 	
+	/* 
+	 * @author: BaoTHD
+	 */
 	@Override
 	public List<ScheduleEntity> getScheduleByMovieId(Long movieId) {
 		return (List<ScheduleEntity>) scheduleRepository.findByMovie(movieId);
 	}
+
+	
+	/* 
+	 * @author: BaoTHD
+	 */
+	@Override
+	public boolean changeScheduleState(ScheduleEntity schedule) {
+		// TODO Auto-generated method stub
+		if  (schedule.getIsActive() == true) {
+			schedule.setIsActive(false);
+			scheduleRepository.setFixedScheduleFor(schedule.getIsActive(), schedule.getScheduleId());
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	
 
 }

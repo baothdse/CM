@@ -1,14 +1,16 @@
 package com.cm.entities;
-// Generated Mar 1, 2017 2:04:33 PM by Hibernate Tools 4.3.1.Final
+// Generated Mar 1, 2017 2:36:24 PM by Hibernate Tools 4.3.1.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -115,13 +117,13 @@ public class AccountEntity implements java.io.Serializable {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-
+	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accounts")
 	public Set<TicketEntity> getTickets() {
 		return this.tickets;
 	}
-	
+
 	public void setTickets(Set<TicketEntity> tickets) {
 		this.tickets = tickets;
 	}

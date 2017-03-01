@@ -17,4 +17,5 @@ public interface ScheduleService {
 
 	List<ScheduleEntity> getScheduleByMovieId(Long movieId);
 	
+	boolean changeScheduleState(ScheduleEntity schedule);
 }
