@@ -154,6 +154,7 @@ public class MovieEntity implements java.io.Serializable {
 		this.picture = picture;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
 	public Set<ScheduleEntity> getScheduleses() {
 		return this.scheduleses;
