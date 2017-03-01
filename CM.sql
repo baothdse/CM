@@ -7,7 +7,8 @@ create table accounts (
     password varchar(50),
     nameOfCustomer varchar(128),
     birthdate date,
-    role varchar (30)
+    role varchar (30),
+    isActive boolean
 );
 create table movie (
     movieId bigint(20) not null primary key auto_increment,
@@ -20,6 +21,8 @@ create table movie (
     addById bigint(20),
     trailer varchar(300),
     picture varchar (300),
+    isActive boolean,
+    lenght time,
     constraint fk_add foreign key (addById) references accounts(userId)
 );
 
@@ -29,7 +32,8 @@ create table schedules (
     startTime time,
     theatre varchar(50),
     room integer(2),
-    movieId bigint(20),    
+    movieId bigint(20),
+    isActive boolean,
     constraint fk_movie foreign key (movieId) references movie(movieId)
 );
 

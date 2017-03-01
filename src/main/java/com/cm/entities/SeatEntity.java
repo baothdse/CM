@@ -1,5 +1,5 @@
 package com.cm.entities;
-// Generated Feb 28, 2017 10:36:06 AM by Hibernate Tools 4.3.1.Final
+// Generated Mar 1, 2017 1:55:47 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
