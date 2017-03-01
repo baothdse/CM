@@ -176,7 +176,8 @@ public class MovieEntity implements java.io.Serializable {
 	public void setLenght(Integer lenght) {
 		this.lenght = lenght;
 	}
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
 	public Set<ScheduleEntity> getScheduleses() {
 		return this.scheduleses;

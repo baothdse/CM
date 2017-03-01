@@ -118,7 +118,8 @@ public class ScheduleEntity implements java.io.Serializable {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "schedules")
 	public Set<SeatEntity> getSeats() {
 		return this.seats;
