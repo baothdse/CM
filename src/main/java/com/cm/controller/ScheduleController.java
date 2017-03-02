@@ -77,7 +77,8 @@ public class ScheduleController {
 			CustomError error = new CustomError(ErrorConstants.ER004, ErrorConstants.EM004);
 			for (ScheduleEntity schedule : listOfSchedule) {
 				if (schedule.getTheatre().equals(theatre) && schedule.getRoom().equals(room)
-						&& schedule.getStartDate().equals(date) && schedule.getStartTime().equals(time)) {						
+						&& schedule.getStartDate().equals(date) && schedule.getStartTime().equals(time) 
+						&& schedule.getIsActive() == true) {						
 					checkDuplicate = false;
 				} else {
 					checkDuplicate = true;
