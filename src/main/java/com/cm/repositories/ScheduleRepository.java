@@ -21,7 +21,7 @@ public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> 
 	 * @return
 	 */
 	@Query("Select s from ScheduleEntity s where s.movie.movieId = :movieID and "
-			+ "(s.startDate >= :today and s.startDate <= :tomorow) order by s.startDate ASC, s.startTime")
+			+ "(s.startDate >= :today and s.startDate <= :tomorow) and isActive != 0 order by s.startDate ASC, s.startTime")
 	List<ScheduleEntity> findByMovie(@Param("movieID") Long movieID, @Param("today") Date today,
 			@Param("tomorow") Date tomorow);
 
