@@ -1,5 +1,6 @@
 package com.cm.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,23 @@ public class MovieServiceImp implements MovieService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void updateMovie(MovieEntity movie, String movieName, String introduction, String actor, String genre,
+			Date startDate, Date endDate, String trailer, String picture, int lenght) {
+		// TODO Auto-generated method stub
+			movie.setMovieName(movieName);
+			movie.setIntroduction(introduction);
+			movie.setActor(actor);
+			movie.setGenre(genre);
+			movie.setStartDate(startDate);
+			movie.setEndDate(endDate);
+			movie.setPicture(picture);
+			movie.setTrailer(trailer);
+			movie.setLenght(lenght);
+			movieRepository.setFixedMovieFor(movie.getMovieName(), movie.getIntroduction(), movie.getActor(),
+					movie.getGenre(), movie.getStartDate(), movie.getEndDate(), movie.getTrailer(), movie.getPicture(), 
+					movie.getLenght(), movie.getMovieId());
 	}
 }

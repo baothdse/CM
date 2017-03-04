@@ -28,4 +28,13 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 	@Modifying
 	@Query("Update MovieEntity m set m.isActive = :isActive where m.isActive = true and m.movieId = :movieId")
 	void setFixedMovieFor(@Param("isActive") boolean isActive, @Param("movieId") Long movieId );
+	
+	@Modifying
+	@Query("Update MovieEntity m set m.movieName = :movieName, m.introduction = :introduction, m.actor = :actor, "
+			+ "m.genre = :genre, m.startDate = :startDate, m.endDate = :endDate, m.trailer = :trailer, "
+			+ "m.picture = :picture, m.lenght = :lenght where m.movieId = :movieId" )
+	void setFixedMovieFor(@Param("movieName") String movieName, @Param("introduction") String introduction,
+			@Param("actor") String actor, @Param("genre") String genre, @Param("startDate") Date startDate, 
+			@Param("endDate") Date endDate, @Param("trailer") String trailer, @Param("picture") String picture, 
+			@Param("lenght") int lenght, @Param("movieId") Long movieId);
 }
