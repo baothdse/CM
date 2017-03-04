@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cm.entities.MovieEntity;
 import com.cm.entities.ScheduleEntity;
 import com.cm.repositories.ScheduleRepository;
-import com.cm.repositories.SeatRepository;
 import com.cm.services.interfaces.MovieService;
 import com.cm.services.interfaces.ScheduleService;
 

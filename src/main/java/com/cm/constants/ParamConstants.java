@@ -21,4 +21,13 @@ public class ParamConstants {
 											 "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10"};
   //Movie
 	public static final String MOVIE_ID = "movieID";
+	public static final String MOVIE_NAME = "movieName";
+	public static final String MOVIE_INTRODUCTION = "introduction";
+	public static final String ACTOR = "actor";
+	public static final String GENRE = "genre";
+	public static final String MOVIE_START_DATE = "startDate";
+	public static final String MOVIE_END_DATE = "endDate";
+	public static final String TRAILER = "trailer";
+	public static final String PICTURE = "picture";
+	public static final String LENGHT = "lenght";
 }

@@ -1,16 +1,22 @@
 package com.cm.services.interfaces;
 
+import java.util.Date;
 import java.util.List;
 
 import com.cm.entities.MovieEntity;
 
 public interface MovieService {
-	
-      List<MovieEntity> getComingSoonMovie();
-	  List<MovieEntity> getPresentingMovie();
-	  List<MovieEntity> getAllMovie();
-	  MovieEntity getMovieByMovieId(Long movieId);
-	  
-	  boolean changeMovieState(MovieEntity movie);
 
+	List<MovieEntity> getComingSoonMovie();
+
+	List<MovieEntity> getPresentingMovie();
+
+	List<MovieEntity> getAllMovie();
+
+	MovieEntity getMovieByMovieId(Long movieId);
+
+	boolean changeMovieState(MovieEntity movie);
+
+	void updateMovie(MovieEntity movie, String movieName, String introduction, String actor, String genre,
+			Date startDate, Date endDate, String trailer, String picture, int lenght);
 }
