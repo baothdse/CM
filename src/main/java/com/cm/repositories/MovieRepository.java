@@ -12,10 +12,10 @@ import com.cm.entities.MovieEntity;
 
 public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 
-	@Query("SELECT t FROM MovieEntity t WHERE :nowDate < t.startDate")
+	@Query("SELECT t FROM MovieEntity t WHERE :nowDate < t.startDate and isActive != 0")
 	List<MovieEntity> findByStartDate(@Param("nowDate") Date nowDate);
 
-	@Query("SELECT t FROM MovieEntity t WHERE :nowMovie >= t.startDate and :nowMovie <= t.endDate")
+	@Query("SELECT t FROM MovieEntity t WHERE :nowMovie >= t.startDate and :nowMovie <= t.endDate and isActive != 0")
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
 	
 	MovieEntity findByMovieId(Long movieId);

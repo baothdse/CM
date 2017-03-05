@@ -41,21 +41,11 @@ public class MovieController {
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 
-	/**
-	 * @author BaoTHD
-	 * @return
-	 */
 	@RequestMapping(value = URLConstants.GET_ALL_MOVIE, method = RequestMethod.GET)
 	public ResponseEntity<?> getAllMovie() {
 		List<MovieEntity> movie = movieService.getAllMovie();
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
-
-	// @RequestMapping(value = "/all-movie", method = RequestMethod.GET)
-	// public ResponseEntity<?> getAllMovie() {
-	// List<MovieEntity> allMovie = movieService.getAllMovie();
-	// return new ResponseEntity<List<MovieEntity>>(allMovie, HttpStatus.OK);
-	// }
 
 	/**
 	 * @author BaoTHD
