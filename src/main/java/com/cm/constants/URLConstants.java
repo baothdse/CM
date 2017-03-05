@@ -17,4 +17,5 @@ public class URLConstants {
 
 	public static final String GET_MOVIE_URL = "/schedule";
 
+	public static final String CREATE_MOVIE_URL = "/create-movie";
 }

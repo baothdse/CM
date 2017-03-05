@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cm.entities.AccountEntity;
 import com.cm.entities.MovieEntity;
 import com.cm.repositories.MovieRepository;
+import com.cm.services.interfaces.AccountService;
 import com.cm.services.interfaces.MovieService;
 
 /**
@@ -21,6 +23,8 @@ public class MovieServiceImp implements MovieService {
 
 	@Autowired
 	private MovieRepository movieRepository;
+	@Autowired
+	private AccountService accountService;
 
 	@Override
 	public List<MovieEntity> getComingSoonMovie() {
@@ -69,20 +73,56 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
+	public void saveMovie(MovieEntity movie) {
+		// TODO Auto-generated method stub
+		movieRepository.save(movie);
+	}
+
+	@Override
+	public List<MovieEntity> getMovieByUserId(Long userID) {
+		// TODO Auto-generated method stub
+		return (List<MovieEntity>) movieRepository.findByUserId(userID);
+	}
+
+	public void createMovieByUserId(Long userID, String movieName, String introduction, String actor,
+			String genre, Date startDate, Date endDate, String trailer, String picture, Integer lenght, Boolean isActive,
+			List<MovieEntity> lisftOfMovie) {
+		// TODO Auto-generated method stub
+
+		
+		AccountEntity user = accountService.findById(userID);
+		MovieEntity movie = new MovieEntity();
+
+		movie.setAccounts(user);
+		movie.setMovieName(movieName);
+		movie.setIntroduction(introduction);
+		movie.setActor(actor);
+		movie.setGenre(genre);
+		movie.setStartDate(startDate);
+		movie.setEndDate(endDate);
+		movie.setTrailer(trailer);
+		movie.setPicture(picture);
+		movie.setLenght(lenght);
+		movie.setIsActive(true);
+		movieRepository.save(movie);
+		lisftOfMovie.add(movie);
+	}
+
+	@Override
 	public void updateMovie(MovieEntity movie, String movieName, String introduction, String actor, String genre,
 			Date startDate, Date endDate, String trailer, String picture, int lenght) {
 		// TODO Auto-generated method stub
-			movie.setMovieName(movieName);
-			movie.setIntroduction(introduction);
-			movie.setActor(actor);
-			movie.setGenre(genre);
-			movie.setStartDate(startDate);
-			movie.setEndDate(endDate);
-			movie.setPicture(picture);
-			movie.setTrailer(trailer);
-			movie.setLenght(lenght);
-			movieRepository.setFixedMovieFor(movie.getMovieName(), movie.getIntroduction(), movie.getActor(),
-					movie.getGenre(), movie.getStartDate(), movie.getEndDate(), movie.getTrailer(), movie.getPicture(), 
-					movie.getLenght(), movie.getMovieId());
+		movie.setMovieName(movieName);
+		movie.setIntroduction(introduction);
+		movie.setActor(actor);
+		movie.setGenre(genre);
+		movie.setStartDate(startDate);
+		movie.setEndDate(endDate);
+		movie.setPicture(picture);
+		movie.setTrailer(trailer);
+		movie.setLenght(lenght);
+		movieRepository.setFixedMovieFor(movie.getMovieName(), movie.getIntroduction(), movie.getActor(),
+				movie.getGenre(), movie.getStartDate(), movie.getEndDate(), movie.getTrailer(), movie.getPicture(),
+				movie.getLenght(), movie.getMovieId());
 	}
 }

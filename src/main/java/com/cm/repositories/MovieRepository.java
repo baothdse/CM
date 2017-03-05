@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.cm.constants.ParamConstants;
 import com.cm.entities.MovieEntity;
 
 public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
@@ -19,6 +20,11 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
 	
 	MovieEntity findByMovieId(Long movieId);
+	
+	@Query("SELECT m FROM MovieEntity m, AccountEntity a WHERE m.accounts.userId = :userID and "
+			+ "a.userId = :userID")
+	List<MovieEntity> findByUserId(@Param(value = ParamConstants.USER_ID) Long userID);
+	
 	
 	/**
 	 * @author BaoTHD
