@@ -21,24 +21,27 @@ import com.cm.error.CustomError;
 import com.cm.services.interfaces.MovieService;
 
 @RestController
-@RequestMapping("/movie")
+@RequestMapping(value = URLConstants.MOVIE_URL)
 public class MovieController {
 
 	@Autowired
 	MovieService movieService;
+	
+	private MovieEntity movie;
+	private List<MovieEntity> listOfMovie;
 
 	@RequestMapping(value = URLConstants.GET_MOVIE_SOON, method = RequestMethod.GET)
 	public ResponseEntity<?> getComingSoon() {
-		List<MovieEntity> movie = (List<MovieEntity>) movieService.getComingSoonMovie();
+		listOfMovie = (List<MovieEntity>) movieService.getComingSoonMovie();
 		//System.out.println(movie);
-		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
+		return new ResponseEntity<List<MovieEntity>>(listOfMovie, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = URLConstants.GET_MOVIE_NOW, method = RequestMethod.GET)
 	public ResponseEntity<?> getMoviePresenting() {
 
-		List<MovieEntity> movie = (List<MovieEntity>) movieService.getPresentingMovie();
-		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
+		listOfMovie = (List<MovieEntity>) movieService.getPresentingMovie();
+		return new ResponseEntity<List<MovieEntity>>(listOfMovie, HttpStatus.OK);
 	}
 
 	/**
@@ -47,8 +50,8 @@ public class MovieController {
 	 */
 	@RequestMapping(value = URLConstants.GET_ALL_MOVIE, method = RequestMethod.GET)
 	public ResponseEntity<?> getAllMovie() {
-		List<MovieEntity> movie = movieService.getAllMovie();
-		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
+		listOfMovie = movieService.getAllMovie();
+		return new ResponseEntity<List<MovieEntity>>(listOfMovie, HttpStatus.OK);
 	}
 
 	// @RequestMapping(value = "/all-movie", method = RequestMethod.GET)
@@ -62,9 +65,9 @@ public class MovieController {
 	 * @param movieId
 	 * @return
 	 */
-	@RequestMapping(value = "/changeMovieState", method = RequestMethod.POST)
+	@RequestMapping(value = URLConstants.CHANGE_MOVIE_STATE_URL, method = RequestMethod.POST)
 	public ResponseEntity<?> changeMovieState(@RequestParam(value = ParamConstants.MOVIE_ID) Long movieId) {
-		MovieEntity movie = movieService.getMovieByMovieId(movieId);
+		movie = movieService.getMovieByMovieId(movieId);
 		CustomError error = new CustomError(ErrorConstants.ER006, ErrorConstants.EM006);
 		if (movieService.changeMovieState(movie) == true) {
 			return new ResponseEntity<MovieEntity>(movie, HttpStatus.OK);
@@ -72,18 +75,18 @@ public class MovieController {
 		return new ResponseEntity<CustomError>(error, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/updateMovieInfo", method = RequestMethod.POST)
+	@RequestMapping(value = URLConstants.UPDATE_MOVIE_INFO_URL, method = RequestMethod.POST)
 	public ResponseEntity<?> updateMovieInfo(@RequestParam(value = ParamConstants.MOVIE_ID) Long movieId,
 			@RequestParam(value = ParamConstants.MOVIE_NAME) String movieName,
 			@RequestParam(value = ParamConstants.MOVIE_INTRODUCTION) String introduction,
 			@RequestParam(value = ParamConstants.ACTOR) String actor,
 			@RequestParam(value = ParamConstants.GENRE) String genre,
-			@RequestParam(value = ParamConstants.MOVIE_START_DATE) String startDate,
-			@RequestParam(value = ParamConstants.MOVIE_END_DATE) String endDate,
+			@RequestParam(value = ParamConstants.START_DATE) String startDate,
+			@RequestParam(value = ParamConstants.END_DATE) String endDate,
 			@RequestParam(value = ParamConstants.TRAILER) String trailer,
 			@RequestParam(value = ParamConstants.PICTURE) String picture,
 			@RequestParam(value = ParamConstants.LENGHT) int lenght) throws ParseException {
-		MovieEntity movie = movieService.getMovieByMovieId(movieId);
+		movie = movieService.getMovieByMovieId(movieId);
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		Date movieStartDate = date.parse(startDate);
 		Date movieEndDate = date.parse(endDate);

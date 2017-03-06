@@ -22,7 +22,7 @@ import com.cm.services.interfaces.ScheduleService;
 import com.cm.services.interfaces.SeatService;
 
 @RestController
-@RequestMapping("/schedule")
+@RequestMapping(value = URLConstants.SCHEDULE_URL)
 public class ScheduleController {
 
 	@Autowired
@@ -31,6 +31,8 @@ public class ScheduleController {
 	@Autowired
 	private SeatService seatService;
 
+	private ScheduleEntity schedule;
+	
 	/**
 	 * @author BaoTHD
 	 * @param scheduleId
@@ -39,8 +41,8 @@ public class ScheduleController {
 	@RequestMapping(value = "/schedules", method = RequestMethod.GET)
 	public ResponseEntity<?> getScheduleByScheduleId(
 			@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
-
-		ScheduleEntity schedule = scheduleService.getScheduleByScheduleId(scheduleId);
+	
+		schedule = scheduleService.getScheduleByScheduleId(scheduleId);
 		return new ResponseEntity<ScheduleEntity>(schedule, HttpStatus.OK);
 
 	}
@@ -56,14 +58,13 @@ public class ScheduleController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(value = URLConstants.CREATE_SCHEDULE_URL, method = RequestMethod.POST)
-	public ResponseEntity<?> createScheduleByMovie(@RequestParam(value = "movieId") Long movieId,
+	public ResponseEntity<?> createScheduleByMovie(@RequestParam(value = ParamConstants.MOVIE_ID) Long movieId,
 													@RequestParam(value = ParamConstants.START_DATE) String startDate, 
 													@RequestParam(value = ParamConstants.START_TIME) String startTime,
 													@RequestParam(value = ParamConstants.THEATRE) String theatre, 
 													@RequestParam(value = ParamConstants.ROOM) int room) throws ParseException {
 		
 		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();
-		ScheduleEntity scheduleEntity = null;
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
 		Date time = new SimpleDateFormat("hh:mm").parse(startTime);
 		boolean checkDuplicate = true;
@@ -72,13 +73,13 @@ public class ScheduleController {
 			scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room, listOfSchedule);
 			Long scheduleId = listOfSchedule.get(listOfSchedule.size() -1).getScheduleId();
 			seatService.createSeatByScheduleId(scheduleId);
-			scheduleEntity = listOfSchedule.get(listOfSchedule.size() - 1);
+			schedule = listOfSchedule.get(listOfSchedule.size() - 1);
 		} else {
 			CustomError error = new CustomError(ErrorConstants.ER004, ErrorConstants.EM004);
-			for (ScheduleEntity schedule : listOfSchedule) {
-				if (schedule.getTheatre().equals(theatre) && schedule.getRoom().equals(room)
-						&& schedule.getStartDate().equals(date) && schedule.getStartTime().equals(time) 
-						&& schedule.getIsActive() == true) {						
+			for (ScheduleEntity scheduleEntity : listOfSchedule) {
+				if (scheduleEntity.getTheatre().equals(theatre) && scheduleEntity.getRoom().equals(room)
+						&& scheduleEntity.getStartDate().equals(date) && scheduleEntity.getStartTime().equals(time) 
+						&& scheduleEntity.getIsActive() == true) {						
 					checkDuplicate = false;
 				} else {
 					checkDuplicate = true;
@@ -90,23 +91,23 @@ public class ScheduleController {
 				scheduleService.createScheduleByMovieId(movieId, date, time, theatre, room, listOfSchedule);
 				Long scheduleId = listOfSchedule.get(listOfSchedule.size() - 1).getScheduleId();
 				seatService.createSeatByScheduleId(scheduleId);
-				scheduleEntity = listOfSchedule.get(listOfSchedule.size() - 1);
+				schedule = listOfSchedule.get(listOfSchedule.size() - 1);
 			}
 		}
-		return new ResponseEntity<ScheduleEntity>(scheduleEntity, HttpStatus.OK);
+		return new ResponseEntity<ScheduleEntity>(schedule, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = URLConstants.GET_SCHEDULE_MOVIE, method = RequestMethod.POST)
 	public ResponseEntity<?> getComingSoon(@RequestParam(value = ParamConstants.MOVIE_ID) Long movieID) {
-		List<ScheduleEntity> schedule = (List<ScheduleEntity>) scheduleService.getScheduleByMovie(movieID);
-		return new ResponseEntity<List<ScheduleEntity>>(schedule, HttpStatus.OK);
+		List<ScheduleEntity> listOfSchedule = (List<ScheduleEntity>) scheduleService.getScheduleByMovie(movieID);
+		return new ResponseEntity<List<ScheduleEntity>>(listOfSchedule, HttpStatus.OK);
 	}
 
 	
-	@RequestMapping(value = "/changeScheduleState", method = RequestMethod.POST)
+	@RequestMapping(value = URLConstants.CHANGE_SCHEDULE_STATE_URL, method = RequestMethod.POST)
 	public ResponseEntity<?> changeScheduleState(@RequestParam(value = ParamConstants.SCHEDULE_ID) Long scheduleId) {
 		
-		ScheduleEntity schedule = scheduleService.getScheduleByScheduleId(scheduleId);
+		schedule = scheduleService.getScheduleByScheduleId(scheduleId);
 		CustomError error = new CustomError(ErrorConstants.ER005, ErrorConstants.EM005);
 		if (scheduleService.changeScheduleState(schedule) == true) {
 			return new ResponseEntity<ScheduleEntity>(schedule, HttpStatus.OK);
@@ -119,7 +120,7 @@ public class ScheduleController {
 	 * @author BaoTHD
 	 * @return
 	 */
-	@RequestMapping(value = "/getAllSchedule", method = RequestMethod.GET)
+	@RequestMapping(value = URLConstants.GET_ALL_SCHEDULE_URL, method = RequestMethod.GET)
 	public ResponseEntity<?> getAllSchedule() {
 		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();
 		return new ResponseEntity<List<ScheduleEntity>>(listOfSchedule, HttpStatus.OK);

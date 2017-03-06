@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cm.constants.ErrorConstants;
+import com.cm.constants.ParamConstants;
+import com.cm.constants.URLConstants;
 import com.cm.entities.SeatEntity;
 import com.cm.entities.TicketEntity;
 import com.cm.error.CustomError;
@@ -34,12 +36,12 @@ public class TicketController {
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/bookTicket", method = RequestMethod.POST)
-	public ResponseEntity<?> bookTicketBySeatId (@RequestParam(value = "username") String username,
-												@RequestParam(value = "phone") String phone,											
-												@RequestParam(value = "price") Long price,
-												@RequestParam(value = "seatId") List<Long> listOfSeatId,
-												@RequestParam(value = "userId") Long userId) {
+	@RequestMapping(value = URLConstants.BOOK_TICKET_URL, method = RequestMethod.POST)
+	public ResponseEntity<?> bookTicketBySeatId (@RequestParam(value = ParamConstants.USERNAME) String username,
+												@RequestParam(value = ParamConstants.PHONE) String phone,											
+												@RequestParam(value = ParamConstants.PRICE) Long price,
+												@RequestParam(value = ParamConstants.SEAT_ID) List<Long> listOfSeatId,
+												@RequestParam(value = ParamConstants.USER_ID) Long userId) {
 		CustomError error = new CustomError(ErrorConstants.ER002, ErrorConstants.EM002);
 		List<TicketEntity> listOfTicket = ticketService.getAllTicketBySeatId(listOfSeatId);
 		
