@@ -41,6 +41,52 @@ public class MovieController {
 		return new ResponseEntity<List<MovieEntity>>(movie, HttpStatus.OK);
 	}
 
+
+	/*,
+	*/
+	@RequestMapping(value = URLConstants.CREATE_MOVIE_URL, method = RequestMethod.POST)
+	public ResponseEntity<?> createMovieByUserId(@RequestParam(value = "userId") Long userID,
+			@RequestParam(value = ParamConstants.MOVIE_NAME) String movieName, 
+			@RequestParam(value = ParamConstants.MOVIE_INTRODUCTION) String introduction,
+			@RequestParam(value = ParamConstants.ACTOR) String actor, 
+			@RequestParam(value = ParamConstants.GENRE) String genre,
+			@RequestParam(value = ParamConstants.START_DATE) Date startDate,
+			@RequestParam(value = ParamConstants.END_DATE) Date endDate,
+			@RequestParam(value = ParamConstants.TRAILER) String trailer,
+			@RequestParam(value = ParamConstants.PICTURE) String picture,
+			@RequestParam(value = ParamConstants.ISACTIVE) Boolean isActive,
+			@RequestParam(value = ParamConstants.LENGHT) Integer lenght) throws ParseException {
+		
+		List<MovieEntity> listOfMovie = movieService.getMovieByUserId(userID);
+		boolean checkDuplicate = true;
+		
+		CustomError error = new CustomError(ErrorConstants.ER007, ErrorConstants.ER007);
+		for (MovieEntity movieEntity : listOfMovie) {
+			if (movieEntity.getMovieName().equals(movieName)) {
+				checkDuplicate = false;
+			} else {
+				checkDuplicate = true;
+			}
+		}
+		if (checkDuplicate == false) {
+			return new ResponseEntity<CustomError>(error, HttpStatus.OK);
+		} else {
+			if (movieService.getMovieByUserId(userID) != null) {
+				movieService.createMovieByUserId(userID, movieName, introduction, actor, genre, startDate, endDate, trailer, picture, lenght, isActive, listOfMovie);
+				return new ResponseEntity<List<MovieEntity>>(listOfMovie, HttpStatus.OK);
+			} else {
+				CustomError customError = new CustomError(ErrorConstants.ER008, ErrorConstants.EM008);
+				return new ResponseEntity<CustomError>(customError, HttpStatus.OK);
+			}
+		
+		}
+		
+}
+
+	/**
+	 * @author BaoTHD
+	 * @return
+	 */
 	@RequestMapping(value = URLConstants.GET_ALL_MOVIE, method = RequestMethod.GET)
 	public ResponseEntity<?> getAllMovie() {
 		List<MovieEntity> movie = movieService.getAllMovie();

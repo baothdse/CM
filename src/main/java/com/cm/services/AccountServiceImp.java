@@ -16,8 +16,8 @@ public class AccountServiceImp implements AccountService {
 	private AccountRepository accountRepository;
 
 	@Override
-	public AccountEntity findById(Long id) {
-		return accountRepository.findOne(id);
+	public AccountEntity findById(Long userID) {
+		return accountRepository.findByUserId(userID);
 	}
 
 	@Override
