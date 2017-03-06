@@ -2,7 +2,7 @@ package com.cm.constants;
 
 public class ParamConstants {
 	// Account
-	public static final String USER_ID = "userId";
+  public static final String USER_ID = "userID";
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "password";
 	public static final String PHONE = "phone";
@@ -20,9 +20,10 @@ public class ParamConstants {
 			"C10", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "E1", "E2", "E3", "E4", "E5", "E6",
 			"E7", "E8", "E9", "E10" };
 	
+
 	//Seat 
 	public static final String SEAT_ID = "seatId";
-	// Movie
+
 	public static final String MOVIE_ID = "movieID";
 	public static final String MOVIE_NAME = "movieName";
 	public static final String MOVIE_INTRODUCTION = "introduction";
@@ -32,7 +33,10 @@ public class ParamConstants {
 	public static final String TRAILER = "trailer";
 	public static final String PICTURE = "picture";
 	public static final String LENGHT = "lenght";
-	
 	//ticket
 	public static final String PRICE = "price";
+
+	public static final String END_DATE = "endDate";
+	public static final String ISACTIVE = "isActive";
+
 }

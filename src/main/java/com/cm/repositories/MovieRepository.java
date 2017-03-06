@@ -8,17 +8,23 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.cm.constants.ParamConstants;
 import com.cm.entities.MovieEntity;
 
 public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 
-	@Query("SELECT t FROM MovieEntity t WHERE :nowDate < t.startDate")
+	@Query("SELECT t FROM MovieEntity t WHERE :nowDate < t.startDate and isActive != 0")
 	List<MovieEntity> findByStartDate(@Param("nowDate") Date nowDate);
 
-	@Query("SELECT t FROM MovieEntity t WHERE :nowMovie >= t.startDate and :nowMovie <= t.endDate")
+	@Query("SELECT t FROM MovieEntity t WHERE :nowMovie >= t.startDate and :nowMovie <= t.endDate and isActive != 0")
 	List<MovieEntity> findByStartEndDate(@Param("nowMovie") Date nowMovie);
 	
 	MovieEntity findByMovieId(Long movieId);
+	
+	@Query("SELECT m FROM MovieEntity m, AccountEntity a WHERE m.accounts.userId = :userID and "
+			+ "a.userId = :userID")
+	List<MovieEntity> findByUserId(@Param(value = ParamConstants.USER_ID) Long userID);
+	
 	
 	/**
 	 * @author BaoTHD

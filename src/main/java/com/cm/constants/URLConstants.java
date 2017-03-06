@@ -22,6 +22,8 @@ public class URLConstants {
 	public static final String CHANGE_SCHEDULE_STATE_URL = "/changeScheduleState";
 	public static final String GET_ALL_SCHEDULE_URL = "/getAllSchedule";
 
-	//ticket
 	public static final String BOOK_TICKET_URL = "/bookTicket";
+	public static final String GET_MOVIE_URL = "/schedule";
+
+	public static final String CREATE_MOVIE_URL = "/create-movie";
 }
