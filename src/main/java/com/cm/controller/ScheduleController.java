@@ -66,7 +66,7 @@ public class ScheduleController {
 		
 		List<ScheduleEntity> listOfSchedule = scheduleService.getAllSchedules();
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
-		Date time = new SimpleDateFormat("hh:mm").parse(startTime);
+		Date time = new SimpleDateFormat("HH:mm").parse(startTime);
 		boolean checkDuplicate = true;
 		
 		if (listOfSchedule.isEmpty()) {
