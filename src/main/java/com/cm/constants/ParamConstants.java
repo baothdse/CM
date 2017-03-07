@@ -36,7 +36,6 @@ public class ParamConstants {
 	//ticket
 	public static final String PRICE = "price";
 
-	public static final String END_DATE = "endDate";
 	public static final String ISACTIVE = "isActive";
 
 }
