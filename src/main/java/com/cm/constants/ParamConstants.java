@@ -2,7 +2,7 @@ package com.cm.constants;
 
 public class ParamConstants {
 	// Account
-  public static final String USER_ID = "userID";
+  public static final String USER_ID = "userId";
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "password";
 	public static final String PHONE = "phone";
