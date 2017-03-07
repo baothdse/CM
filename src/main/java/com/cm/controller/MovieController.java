@@ -60,8 +60,9 @@ public class MovieController {
 			@RequestParam(value = ParamConstants.ISACTIVE) Boolean isActive,
 			@RequestParam(value = ParamConstants.LENGHT) Integer lenght) throws ParseException {
 		
-		List<MovieEntity> listOfMovie = movieService.getMovieByUserId(userID);
+		List<MovieEntity> listOfMovie = movieService.getAllMovie();
 		boolean checkDuplicate = true;
+		MovieEntity movie = null;
 		
 		CustomError error = new CustomError(ErrorConstants.ER007, ErrorConstants.ER007);
 		for (MovieEntity movieEntity : listOfMovie) {
@@ -76,7 +77,8 @@ public class MovieController {
 		} else {
 			if (movieService.getMovieByUserId(userID) != null) {
 				movieService.createMovieByUserId(userID, movieName, introduction, actor, genre, startDate, endDate, trailer, picture, lenght, isActive, listOfMovie);
-				return new ResponseEntity<List<MovieEntity>>(listOfMovie, HttpStatus.OK);
+				movie = listOfMovie.get(listOfMovie.size() - 1);
+				return new ResponseEntity<MovieEntity>(movie, HttpStatus.OK);
 			} else {
 				CustomError customError = new CustomError(ErrorConstants.ER008, ErrorConstants.EM008);
 				return new ResponseEntity<CustomError>(customError, HttpStatus.OK);
