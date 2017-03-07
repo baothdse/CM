@@ -25,6 +25,6 @@ public interface MovieService {
 				Date startDate, Date endDate, String trailer, String picture, int lenght);
 	  
 	  void createMovieByUserId(Long userID, String movieName, String introduction, String actor, String genre,
-			Date startDate, Date endDate, String trailer, String picture, Integer lenght, Boolean isActive,
+			Date startDate, Date endDate, String trailer, String picture, Integer lenght,
 			List<MovieEntity> listOfMovie);
 }
