@@ -85,7 +85,7 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	public void createMovieByUserId(Long userID, String movieName, String introduction, String actor,
-			String genre, Date startDate, Date endDate, String trailer, String picture, Integer lenght, Boolean isActive,
+			String genre, Date startDate, Date endDate, String trailer, String picture, Integer lenght,
 			List<MovieEntity> lisftOfMovie) {
 		// TODO Auto-generated method stub
 

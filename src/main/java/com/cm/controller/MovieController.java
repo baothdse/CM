@@ -53,14 +53,16 @@ public class MovieController {
 			@RequestParam(value = ParamConstants.MOVIE_INTRODUCTION) String introduction,
 			@RequestParam(value = ParamConstants.ACTOR) String actor, 
 			@RequestParam(value = ParamConstants.GENRE) String genre,
-			@RequestParam(value = ParamConstants.START_DATE) Date startDate,
-			@RequestParam(value = ParamConstants.END_DATE) Date endDate,
+			@RequestParam(value = ParamConstants.START_DATE) String startDate,
+			@RequestParam(value = ParamConstants.END_DATE) String endDate,
 			@RequestParam(value = ParamConstants.TRAILER) String trailer,
 			@RequestParam(value = ParamConstants.PICTURE) String picture,
-			@RequestParam(value = ParamConstants.ISACTIVE) Boolean isActive,
 			@RequestParam(value = ParamConstants.LENGHT) Integer lenght) throws ParseException {
 		
 		List<MovieEntity> listOfMovie = movieService.getAllMovie();
+		Date start = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+		Date end = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
+
 		boolean checkDuplicate = true;
 		MovieEntity movie = null;
 		
@@ -76,7 +78,7 @@ public class MovieController {
 			return new ResponseEntity<CustomError>(error, HttpStatus.OK);
 		} else {
 			if (movieService.getMovieByUserId(userID) != null) {
-				movieService.createMovieByUserId(userID, movieName, introduction, actor, genre, startDate, endDate, trailer, picture, lenght, isActive, listOfMovie);
+				movieService.createMovieByUserId(userID, movieName, introduction, actor, genre, start, end, trailer, picture, lenght, listOfMovie);
 				movie = listOfMovie.get(listOfMovie.size() - 1);
 				return new ResponseEntity<MovieEntity>(movie, HttpStatus.OK);
 			} else {
