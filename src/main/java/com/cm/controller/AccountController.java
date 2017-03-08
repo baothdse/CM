@@ -1,5 +1,9 @@
 package com.cm.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +36,20 @@ public class AccountController {
 			return new ResponseEntity<CustomError>(err, HttpStatus.OK);
 		}
 		return new ResponseEntity<AccountEntity>(profile, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = URLConstants.REGISTER_URL, method = RequestMethod.POST) 
+	public ResponseEntity<?> register(@RequestParam(value = ParamConstants.USERNAME) String username, 
+									@RequestParam(value = ParamConstants.PASSWORD) String password, 
+									@RequestParam(value = ParamConstants.NAME_OF_CUSTOMER) String nameOfCustomer,
+									@RequestParam(value = ParamConstants.BIRTHDATE) String birthdate) throws ParseException {
+		Date dateOfBirth = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
+		CustomError error = new CustomError(ErrorConstants.ER009, ErrorConstants.EM009);
+		AccountEntity account = new AccountEntity();
+		if (accountService.register(account, username, password, nameOfCustomer, dateOfBirth) == true) {
+			return new ResponseEntity<AccountEntity> (account, HttpStatus.OK);
+		}
+		return new ResponseEntity<CustomError> (error, HttpStatus.OK);
+		
 	}
 }

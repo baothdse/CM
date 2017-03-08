@@ -2,10 +2,12 @@ package com.cm.constants;
 
 public class ParamConstants {
 	// Account
-  public static final String USER_ID = "userID";
+	public static final String USER_ID = "userID";
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "password";
 	public static final String PHONE = "phone";
+	public static final String NAME_OF_CUSTOMER = "nameOfCustomer";
+	public static final String BIRTHDATE = "birthdate";
 
 	// Schedule
 	public static final String SCHEDULE_ID = "scheduleId";
