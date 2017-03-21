@@ -69,14 +69,14 @@ public class ScheduleServiceImp implements ScheduleService {
 				if (time.after(scheduleListOfOneRoom.get(index).getStartTime())) {
 					if ((time.getTime() - timeOfOneSlot) < scheduleListOfOneRoom.get(index).getStartTime().getTime()) {
 						checkDuplicated = false;
-						error.setErrorCode(ErrorConstants.ER009);
-						error.setMessage(ErrorConstants.EM009);
+						error.setErrorCode(ErrorConstants.ER0010);
+						error.setMessage(ErrorConstants.EM0010);
 					} 
 				} else if (time.before(scheduleListOfOneRoom.get(index).getStartTime())) {					
 					if ((time.getTime() + timeOfOneSlot) > scheduleListOfOneRoom.get(index).getStartTime().getTime()) {
 						checkDuplicated = false;
-						error.setErrorCode(ErrorConstants.ER009);
-						error.setMessage(ErrorConstants.EM009);
+						error.setErrorCode(ErrorConstants.ER0010);
+						error.setMessage(ErrorConstants.EM0010);
 					}
 				} else if (time.equals(scheduleListOfOneRoom.get(index).getStartTime())) {
 					checkDuplicated = false;
