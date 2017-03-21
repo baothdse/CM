@@ -11,6 +11,7 @@ public class ErrorConstants {
 	public static final String ER006 = "ER006";
 	public static final String ER007 = "ER007";
 	public static final String ER008 = "ER008";
+	public static final String ER009 = "ER009";
 	
 	//Error related to Account
 	public static final String EM001 = "Wrong password or username";
@@ -23,6 +24,7 @@ public class ErrorConstants {
 	public static final String EM003 = "This schedule is not existed.";
 	public static final String EM004 = "This schedule is existed. Please check the infomation you have entered!";
 	public static final String EM005 = "This schedule has been de-activated. Please try again!";
+	public static final String EM009 = "This pre-schedule or the next schedule is in watching time";
 	
 	//Error related to Movie
 	public static final String EM006 = "This movie has been de-activated. Please try again!";

@@ -1,5 +1,7 @@
 package com.cm.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -7,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cm.constants.ErrorConstants;
 import com.cm.entities.MovieEntity;
 import com.cm.entities.ScheduleEntity;
+import com.cm.error.CustomError;
 import com.cm.repositories.ScheduleRepository;
 import com.cm.services.interfaces.MovieService;
 import com.cm.services.interfaces.ScheduleService;
@@ -45,6 +49,51 @@ public class ScheduleServiceImp implements ScheduleService {
 	/* 
 	 * @author: BaoTHD
 	 */
+	@Override
+	public boolean createSchedule(Long movieId, String startDate, String startTime, String theatre, 
+									int room, List<ScheduleEntity> listOfSchedule, long lenght, CustomError error) throws ParseException {
+	
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+		Date time = new SimpleDateFormat("HH:mm").parse(startTime);
+
+		long cleanedTime = 10;
+		long timeOfOneSlot = (lenght + cleanedTime) * 60000;
+		List<ScheduleEntity> scheduleListOfOneRoom = scheduleRepository.findByTheatreAndRoomAndStartDate(theatre, room, date); 
+		boolean checkDuplicated = true;
+		
+		if (scheduleListOfOneRoom.isEmpty()) {
+			createScheduleByMovieId(movieId, date, time, theatre, room, listOfSchedule);
+			return true;
+		} else {
+			for (int index = 0; index < scheduleListOfOneRoom.size(); index++) {
+				if (time.after(scheduleListOfOneRoom.get(index).getStartTime())) {
+					if ((time.getTime() - timeOfOneSlot) < scheduleListOfOneRoom.get(index).getStartTime().getTime()) {
+						checkDuplicated = false;
+						error.setErrorCode(ErrorConstants.ER009);
+						error.setMessage(ErrorConstants.EM009);
+					} 
+				} else if (time.before(scheduleListOfOneRoom.get(index).getStartTime())) {					
+					if ((time.getTime() + timeOfOneSlot) > scheduleListOfOneRoom.get(index).getStartTime().getTime()) {
+						checkDuplicated = false;
+						error.setErrorCode(ErrorConstants.ER009);
+						error.setMessage(ErrorConstants.EM009);
+					}
+				} else if (time.equals(scheduleListOfOneRoom.get(index).getStartTime())) {
+					checkDuplicated = false;
+					error.setErrorCode(ErrorConstants.ER004);
+					error.setMessage(ErrorConstants.EM004);
+				}
+			}
+			if (checkDuplicated == true) {
+				createScheduleByMovieId(movieId, date, time, theatre, room, listOfSchedule);
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+	}
+	
 	@Override
 	public void createScheduleByMovieId(Long movieId, Date startDate, Date startTime, String theatre, 
 									int room, List<ScheduleEntity> lisftOfSchedule) {

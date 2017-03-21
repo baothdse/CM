@@ -23,7 +23,7 @@ public class URLConstants {
 	public static final String GET_ALL_SCHEDULE_URL = "/getAllSchedule";
 
 	public static final String BOOK_TICKET_URL = "/bookTicket";
-	public static final String GET_MOVIE_URL = "/schedule";
+	public static final String GET_MOVIE_BY_ID_URL = "/schedule";
 
 	public static final String CREATE_MOVIE_URL = "/create-movie";
 }

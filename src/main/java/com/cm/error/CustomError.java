@@ -16,6 +16,9 @@ public class CustomError {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	public CustomError() {
+		
+	};
 	public CustomError(String errorCode, String message) {
 	super();
 	this.errorCode = errorCode;
