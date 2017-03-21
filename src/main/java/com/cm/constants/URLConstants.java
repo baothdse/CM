@@ -4,6 +4,9 @@ public class URLConstants {
 	public static final String HOME_URL = "/home";
 	public static final String LOGIN_URL = "/login";
 	
+	//Account
+	public static final String REGISTER_URL = "/register";
+	
 	//Movie
 	public static final String MOVIE_URL = "/movie";
 	public static final String GET_SCHEDULE_MOVIE = "/getShowtime";

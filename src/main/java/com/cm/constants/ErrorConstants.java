@@ -16,6 +16,7 @@ public class ErrorConstants {
 	//Error related to Account
 	public static final String EM001 = "Wrong password or username";
 	public static final String EM008 = "This user is not existed.";
+	public static final String EM009 = "This username is existed. Please try again!";
 	
 	//Error related to Seat
 	public static final String EM002 = "The choosen seat have been sold!";
