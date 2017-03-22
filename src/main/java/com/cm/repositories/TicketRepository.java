@@ -14,5 +14,5 @@ public interface TicketRepository extends JpaRepository<TicketEntity, Long> {
 //	TicketEntity findBySeat(@Param(value = "seatId") Long seatId);
 	
 	@Query("Select t from TicketEntity t, SeatEntity s where t.seat.seatId = :seatId and s.seatId = :seatId")
-	List<TicketEntity> findAllBySeat(@Param(value = "seatId") Long seatId);
+	TicketEntity findAllBySeat(@Param(value = "seatId") Long seatId);
 }

@@ -44,7 +44,6 @@ public class TicketController {
 												@RequestParam(value = ParamConstants.USER_ID) Long userId) {
 		CustomError error = new CustomError(ErrorConstants.ER002, ErrorConstants.EM002);
 	
-		
 		for (int index = 0; index < listOfSeatId.size(); index++) {
 			SeatEntity seatEntity = seatService.getSeatBySeatId(listOfSeatId.get(index));
 			if (seatService.changeSeatState(seatEntity) == true) {

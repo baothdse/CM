@@ -1,5 +1,6 @@
 package com.cm.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +58,9 @@ public class TicketServiceImp implements TicketService {
 	@Override
 	public List<TicketEntity> getAllTicketBySeatId(List<Long> listOfSeatId) {
 		// TODO Auto-generated method stub
-		List<TicketEntity> listOfTicket = null;
+		List<TicketEntity> listOfTicket = new ArrayList<>();
 		for (int index = 0; index < listOfSeatId.size(); index++) {
-			listOfTicket = ticketRepository.findAllBySeat(listOfSeatId.get(index));
+			listOfTicket.add(ticketRepository.findAllBySeat(listOfSeatId.get(index)));
 		}
 		return listOfTicket;
 	}
