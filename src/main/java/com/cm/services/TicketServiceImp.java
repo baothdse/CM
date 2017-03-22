@@ -30,8 +30,7 @@ public class TicketServiceImp implements TicketService {
 	 * @author: BaoTHD
 	 */
 	@Override
-	public boolean saveTicket(String username, String phone, Long price, Long seatId, Long userId,
-								List<TicketEntity> listOfTicket) {
+	public boolean saveTicket(String username, String phone, Long price, Long seatId, Long userId) {
 		// TODO Auto-generated method stub
 		TicketEntity ticketEntity = new TicketEntity();
 		SeatEntity seatEntity = seatRepository.findBySeatId(seatId);
@@ -43,7 +42,6 @@ public class TicketServiceImp implements TicketService {
 		ticketEntity.setSeat(seatEntity);
 		ticketEntity.setAccounts(accountEntity);
 		ticketRepository.save(ticketEntity);
-		listOfTicket.add(ticketEntity);
 		return true;
 	}
 

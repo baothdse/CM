@@ -43,16 +43,17 @@ public class TicketController {
 												@RequestParam(value = ParamConstants.SEAT_ID) List<Long> listOfSeatId,
 												@RequestParam(value = ParamConstants.USER_ID) Long userId) {
 		CustomError error = new CustomError(ErrorConstants.ER002, ErrorConstants.EM002);
-		List<TicketEntity> listOfTicket = ticketService.getAllTicketBySeatId(listOfSeatId);
+	
 		
 		for (int index = 0; index < listOfSeatId.size(); index++) {
 			SeatEntity seatEntity = seatService.getSeatBySeatId(listOfSeatId.get(index));
 			if (seatService.changeSeatState(seatEntity) == true) {
-				ticketService.saveTicket(username, phone, price, seatEntity.getSeatId(), userId, listOfTicket);								
+				ticketService.saveTicket(username, phone, price, seatEntity.getSeatId(), userId);								
 			} else {
 				return new ResponseEntity<CustomError>(error, HttpStatus.OK);
 			}
 		}
+		List<TicketEntity> listOfTicket = ticketService.getAllTicketBySeatId(listOfSeatId);
 		return new ResponseEntity<List<TicketEntity>>(listOfTicket, HttpStatus.OK);
 	}
 }
