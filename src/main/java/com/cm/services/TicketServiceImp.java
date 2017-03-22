@@ -1,5 +1,6 @@
 package com.cm.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,7 @@ public class TicketServiceImp implements TicketService {
 	 * @author: BaoTHD
 	 */
 	@Override
-	public boolean saveTicket(String username, String phone, Long price, Long seatId, Long userId,
-								List<TicketEntity> listOfTicket) {
+	public boolean saveTicket(String username, String phone, Long price, Long seatId, Long userId) {
 		// TODO Auto-generated method stub
 		TicketEntity ticketEntity = new TicketEntity();
 		SeatEntity seatEntity = seatRepository.findBySeatId(seatId);
@@ -43,7 +43,6 @@ public class TicketServiceImp implements TicketService {
 		ticketEntity.setSeat(seatEntity);
 		ticketEntity.setAccounts(accountEntity);
 		ticketRepository.save(ticketEntity);
-		listOfTicket.add(ticketEntity);
 		return true;
 	}
 
@@ -59,9 +58,9 @@ public class TicketServiceImp implements TicketService {
 	@Override
 	public List<TicketEntity> getAllTicketBySeatId(List<Long> listOfSeatId) {
 		// TODO Auto-generated method stub
-		List<TicketEntity> listOfTicket = null;
+		List<TicketEntity> listOfTicket = new ArrayList<>();
 		for (int index = 0; index < listOfSeatId.size(); index++) {
-			listOfTicket = ticketRepository.findAllBySeat(listOfSeatId.get(index));
+			listOfTicket.add(ticketRepository.findAllBySeat(listOfSeatId.get(index)));
 		}
 		return listOfTicket;
 	}
